@@ -30,7 +30,6 @@ class _LoginViewState extends State<LoginView> {
                 height: 100,
                 width: 100,
                 decoration: BoxDecoration(
-                  //color: Appcolor.primaryColor,
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.green, width: 1.9),
                   image: DecorationImage(
@@ -61,7 +60,7 @@ class _LoginViewState extends State<LoginView> {
                 lableText: 'Password',
                 hintText: 'Enter your password',
                 icon: Icons.lock,
-                controller: LoginProvider1.passwordCounter,
+                controller: LoginProvider1.passwordController,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 220, top: 15),
@@ -86,7 +85,10 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     Text('Dont have an account? '),
                     InkWell(
-                        onTap: () => FirebaseAuth.instance.createUserWithEmailAndPassword(email: LoginProvider1.emailController.text.trim(), password: LoginProvider1.passwordCounter.text.trim()),
+                        onTap: () => FirebaseAuth.instance.createUserWithEmailAndPassword(
+                              email: LoginProvider1.emailController.text.trim(),
+                              password: LoginProvider1.passwordController.text.trim(),
+                            ),
                         // Navigator.push(
                         //   context,
                         //   MaterialPageRoute(
