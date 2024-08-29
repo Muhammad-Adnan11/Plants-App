@@ -91,4 +91,18 @@ class Productlist with ChangeNotifier {
       "carticon": Icons.add,
     },
   ];
+  List<String> listcount = [
+    'popular',
+    'indoor',
+    'outdoor',
+    'popular',
+    'plants'
+  ];
+  int _index = 0;
+  int get index => _index;
+  void setCat(int index) {
+    _index = index;
+
+    notifyListeners();
+  }
 }
