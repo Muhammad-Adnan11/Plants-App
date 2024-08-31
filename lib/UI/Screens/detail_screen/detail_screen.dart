@@ -67,7 +67,8 @@ class _DetailScreenState extends State<DetailScreen> {
               'Description',
               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
             ),
-          )
+          ),
+          Text('Could you please clarify what specific details about plants youre looking for? Are you interested in types of plants, their care, benefits, or something else? Let me know so I can provide the most relevant information!'),
         ],
       ),
     );

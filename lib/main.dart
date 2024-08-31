@@ -4,6 +4,7 @@ import 'package:plants_mart/UI/Screens/Login_Screen/Login_screen.dart';
 import 'package:plants_mart/UI/Screens/Login_Screen/login_provider.dart';
 import 'package:plants_mart/UI/Screens/Sign_up_screen/Sign_up_provider.dart';
 import 'package:plants_mart/UI/Screens/Sign_up_screen/sign_up_screen.dart';
+import 'package:plants_mart/UI/Screens/cart_screen/cart_screen.dart';
 import 'package:plants_mart/UI/Screens/detail_screen/detail_screen.dart';
 import 'package:plants_mart/UI/Screens/otp_screen/otp_screen.dart';
 import 'package:plants_mart/UI/Screens/product_screen/product_screen.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: DetailScreen(),
+        home: CartScreen(),
       ),
     );
   }
