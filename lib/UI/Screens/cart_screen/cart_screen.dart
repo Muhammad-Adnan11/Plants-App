@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:plants_mart/Core/Colors.dart';
 import 'package:plants_mart/Generated/assets/assets_url.dart';
 
 class CartScreen extends StatefulWidget {
@@ -26,10 +25,14 @@ class _CartScreenState extends State<CartScreen> {
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text('Order list: 3 items'),
-            Expanded(
+            Container(
+              height: 300,
+
               child: ListView.builder(
+                itemExtent: 100,
                   itemCount: 3,
                   itemBuilder: (context, Index) {
                     return Padding(
@@ -43,8 +46,8 @@ class _CartScreenState extends State<CartScreen> {
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8),
                               child: Container(
-                                height: 90,
-                                width: 100,
+                                height: 80,
+                                width: 80,
                                 decoration: BoxDecoration(color: Color(0XFFefefef), borderRadius: BorderRadius.circular(12)),
                                 child: Image.asset(Nicepic.plantsiamge),
                               ),
@@ -54,6 +57,7 @@ class _CartScreenState extends State<CartScreen> {
                               children: [
                                 Text(
                                   'Bard of paradise',
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                                 ),
                                 Text(
@@ -141,10 +145,82 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     );
                   }),
-            )
+            ),
+            Container(
+              height: 45,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
+            color: Color(0XFFffffff),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Promo code',style: TextStyle(color:Colors.grey),),
+                    // MaterialButton(onPressed: (){},
+                    //   color: Colors.green,
+                    //   height: 30,
+                    // )
+                    Container(
+                      alignment: Alignment.center,
+                      height:30,
+                      width: 90,
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(19),
+                        color: Color(0XFF67802f),
+                      ),
+                      child: Text('Apply',style: TextStyle(color: Appcolor.thridecolor),),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 5,),
+            Container(
+              height: 140,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12)
+
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+
+                  children: [
+                    TitleAndPrice(title: 'SubTotal:',price: '\$100',),
+                    Divider(color: Colors.grey,),
+                    TitleAndPrice(title: 'Tax:',price: '\$15',),
+                    Divider(color: Colors.grey,),
+                    TitleAndPrice(title: 'Delivery Fee:',price: '\$5',),
+                    Divider(color: Colors.grey,),
+                    TitleAndPrice(title: 'Total Amount',price: '\$120',),
+
+                  ],
+                ),
+              ),
+            ),
+            MaterialButton(onPressed: (){},color: Colors.green,
+            child: Text('checkOut'),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),),),
           ],
         ),
       ),
     );
+  }
+}
+
+class TitleAndPrice extends StatelessWidget {
+ final String title;
+ final String price;
+ TitleAndPrice({
+   required this.title, required this.price,
+});
+ @override
+
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [Text(title),Text(price
+      ),],);
   }
 }
