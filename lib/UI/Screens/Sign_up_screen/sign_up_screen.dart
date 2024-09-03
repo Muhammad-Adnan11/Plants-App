@@ -71,28 +71,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const Text('Already have an account? '),
                     InkWell(
                       onTap: () {
-                        Signup.auth();
-                        // try {
-                        //   FirebaseAuth.instance
-                        //       .createUserWithEmailAndPassword(
-                        //     email: Signup.emailController.text.trim(),
-                        //     password: Signup.passwordController.text.trim(),
-                        //   )
-                        //       .then((value) {
-                        //     FirebaseFirestore.instance.collection('user').doc().set({
-                        //       'user name': Signup.username.text.trim(),
-                        //       'email': Signup.emailController.text.trim(),
-                        //     });
-                        //   });
-                        // } catch (e) {
-                        //   print(e);
-                        // }
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => LoginView(),
-                        //   ),
-                        // );
+
+                        try {
+                          FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                            email: Signup.emailController.text.trim(),
+                            password: Signup.passwordController.text.trim(),
+                          )
+                              .then((value) {
+                            FirebaseFirestore.instance.collection('user').doc().set({
+                              'user name': Signup.username.text.trim(),
+                              'email': Signup.emailController.text.trim(),
+                            });
+                          });
+                        } catch (e) {
+                          print(e);
+                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => LoginView(),
+                          ),
+                        );
                       },
                       child: Text(
                         'Sign in',

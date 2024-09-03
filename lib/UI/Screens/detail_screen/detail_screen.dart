@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:plants_mart/Generated/assets/assets_url.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+
+  String imageUrl;
+  String name;
+  String descrption;
+  String price;
+
+
+   DetailScreen({super.key,required this.imageUrl,required this.name,required this.descrption,required this.price});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();

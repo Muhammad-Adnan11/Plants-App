@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:plants_mart/UI/Components/CostumTextfield.dart';
 import 'package:plants_mart/UI/Screens/Login_Screen/login_provider.dart';
 import 'package:plants_mart/UI/Screens/Sign_up_screen/sign_up_screen.dart';
+import 'package:plants_mart/UI/Screens/product_screen/product_screen.dart';
 import 'package:plants_mart/core/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -72,7 +73,14 @@ class _LoginViewState extends State<LoginView> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('Login'),
+                      InkWell(
+                          onTap: (){ Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductScreen(),
+                            ),
+                          );},
+                          child : Text('Login')),
                       Icon(Icons.arrow_forward)
                     ],
                   ),
@@ -85,16 +93,20 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     Text('Dont have an account? '),
                     InkWell(
-                        onTap: () => FirebaseAuth.instance.createUserWithEmailAndPassword(
-                              email: LoginProvider1.emailController.text.trim(),
-                              password: LoginProvider1.passwordController.text.trim(),
+                        onTap: () {
+                          FirebaseAuth.instance.createUserWithEmailAndPassword(
+                            email: LoginProvider1.emailController.text.trim(),
+                            password: LoginProvider1.passwordController.text
+                                .trim(),
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => SignUpScreen(),
                             ),
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => SignUpScreen(),
-                        //   ),
-                        // ),
+                          );
+                        },
+
                         child: Text(
                           'Sign up',
                           style: TextStyle(color: Colors.green),
