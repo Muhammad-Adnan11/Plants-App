@@ -23,7 +23,7 @@ class _CartScreenState extends State<CartScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
+        padding: const EdgeInsets.only(left: 25, right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -94,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
                                         width: 18,
                                         color: Color(0XFF67802f),
                                         child: Icon(
-                                          Icons.add,
+                                          Icons.remove,
                                           size: 18,
                                           color: Color(0XFFefefef),
                                         ),
@@ -199,7 +199,7 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
             ),
-            MaterialButton(onPressed: (){},color: Colors.green,
+            MaterialButton(onPressed: (){},color: Color(0XFF67802f),
             child: Text('checkOut'),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),),),
           ],

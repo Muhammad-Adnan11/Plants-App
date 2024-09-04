@@ -3,6 +3,7 @@ import 'package:awesome_bottom_bar/tab_item.dart';
 import 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
 import 'package:flutter/material.dart';
 import 'package:plants_mart/Core/Colors.dart';
+import 'package:plants_mart/UI/Screens/detail_screen/detail_screen.dart';
 import 'package:plants_mart/UI/Screens/product_screen/product_screen_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,8 @@ class _ProductScreenState extends State<ProductScreen> {
           top: -28,
           animated: false,
           itemStyle: ItemStyle.circle,
-          chipStyle: const ChipStyle(notchSmoothness: NotchSmoothness.smoothEdge),
+          chipStyle:
+              const ChipStyle(notchSmoothness: NotchSmoothness.smoothEdge, background: Colors.green),
         ),
       ),
       appBar: AppBar(
@@ -60,15 +62,24 @@ class _ProductScreenState extends State<ProductScreen> {
                     children: [
                       Text(
                         'Get',
-                        style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '50% OFF',
-                        style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '1-20 October',
-                        style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -116,11 +127,17 @@ class _ProductScreenState extends State<ProductScreen> {
                             vm.setCat(index);
                           },
                           child: Card(
-                              color: index == vm.index ? Color(0XFFB1C588) : null,
+                              color:
+                                  index == vm.index ? Color(0XFFB1C588) : null,
                               // margin: EdgeInsets.only(left: 10, top: 10),
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 10, right: 10),
-                                child: Center(child: Text(abc.listcount[index], style: index == vm.index ? TextStyle(color: Colors.white) : null)),
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: Center(
+                                    child: Text(abc.listcount[index],
+                                        style: index == vm.index
+                                            ? TextStyle(color: Colors.white)
+                                            : null)),
                               )),
                         );
                       },
@@ -140,74 +157,89 @@ class _ProductScreenState extends State<ProductScreen> {
                     childAspectRatio: 2 / 8,
                   ),
                   itemBuilder: (BuildContext context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          // image: DecorationImage(
-                          //   image: AssetImage(
-                          //     abc.plantlist[index]['image'],
-                          //   ),
-                          //   //fit: BoxFit.cover,
-                          // ),
-                          borderRadius: BorderRadius.circular(12),
-                          //color: Colors.greenAccent,
-                          border: Border.all(color: Colors.green)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 100, top: 8),
-                            child: Icon(
-                              Icons.favorite,
-                              color: Colors.green,
-                            ),
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(
+                                imageUrl: abc.plantlist[index]['image'],
+                                name: abc.plantlist[index]['title'],
+                                descrption: abc.plantlist[index]['description'],
+                                price: abc.plantlist[index]['subtitle']),
                           ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Image.asset(
-                            abc.plantlist[index]['image'],
-                            height: 100,
-                            width: 120,
-                            fit: BoxFit.fill,
-                          ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
-                          Container(
-                            height: 57,
-                            width: 138,
-                            decoration: BoxDecoration(
-                              color: Color(0XFFE6F7E4),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: ListTile(
-                              title: Text(
-                                abc.plantlist[index]['title'],
-                                overflow: TextOverflow.ellipsis,
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            // image: DecorationImage(
+                            //   image: AssetImage(
+                            //     abc.plantlist[index]['image'],
+                            //   ),
+                            //   //fit: BoxFit.cover,
+                            // ),
+                            borderRadius: BorderRadius.circular(12),
+                            //color: Colors.greenAccent,
+                            border: Border.all(color: Colors.green)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 100, top: 8),
+                              child: Icon(
+                                Icons.favorite,
+                                color: Colors.green,
                               ),
-                              subtitle: Text(abc.plantlist[index]['subtitle']),
-                              trailing: Padding(
-                                padding: const EdgeInsets.only(bottom: 17),
-                                child: Container(
-                                  height: 24,
-                                  width: 24,
-                                  decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.add,
-                                      color: Colors.white,
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Image.asset(
+                              abc.plantlist[index]['image'],
+                              height: 100,
+                              width: 120,
+                              fit: BoxFit.fill,
+                            ),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            Container(
+                              height: 57,
+                              width: 138,
+                              decoration: BoxDecoration(
+                                color: Color(0XFFE6F7E4),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  abc.plantlist[index]['title'],
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                subtitle:
+                                    Text(abc.plantlist[index]['subtitle']),
+                                trailing: Padding(
+                                  padding: const EdgeInsets.only(bottom: 17),
+                                  child: Container(
+                                    height: 24,
+                                    width: 24,
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },

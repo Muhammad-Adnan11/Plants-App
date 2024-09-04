@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plants_mart/Generated/assets/assets_url.dart';
+import 'package:plants_mart/UI/Screens/cart_screen/cart_screen.dart';
 
 class DetailScreen extends StatefulWidget {
 
@@ -19,6 +20,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.only(left: 15,right: 15),
         child: Column(
@@ -26,7 +28,7 @@ class _DetailScreenState extends State<DetailScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 50, top: 30),
-              child: Image.asset(Nicepic.plantsiamge),
+              child: Image.asset(widget.imageUrl),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 10),
@@ -59,7 +61,7 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
 
                Text(
-                'Rosemary Plant',
+                widget.name,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Row(
@@ -69,12 +71,11 @@ class _DetailScreenState extends State<DetailScreen> {
                 plantProperties("Humadit", "20-30%"),
               ],
             ),
-            Text(
-                'Description',
+            Text('Description',
                 style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
             ),
 
-      Text('Could you please clarify what specific details about plants youre looking for? Are you interested in types of plants, their care, benefits, or something else? Let me know so I can provide the most relevant information!'),
+      Text( widget.descrption),
            SizedBox(height: 10,),
            Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +84,7 @@ class _DetailScreenState extends State<DetailScreen> {
                mainAxisSize: MainAxisSize.min,
                children: [
                  Text('price'),
-                 Text('\$40.00',style: TextStyle(
+                 Text(widget.price,style: TextStyle(
                    fontSize: 20,
                    fontWeight: FontWeight.bold,
                  ),
@@ -102,8 +103,13 @@ class _DetailScreenState extends State<DetailScreen> {
                    ,
                    children: [Icon(Icons.shopping_cart,color: Color(0XFFffffff),),
                  SizedBox(width: 20,),
-                 Text('Add to Cart',style: TextStyle(color: Color(0XFFffffff),
-                 ),
+                 InkWell(
+                   onTap: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen()));
+                   },
+                   child: Text('Add to Cart',style: TextStyle(color: Color(0XFFffffff),
+                   ),
+                   ),
                  ),
                    ],
                  ),

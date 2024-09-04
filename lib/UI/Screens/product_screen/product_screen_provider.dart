@@ -8,21 +8,22 @@ class Productlist with ChangeNotifier {
       icon: Icons.home,
       // title: 'Home',
     ),
-    TabItem(
-      icon: Icons.search_sharp,
-      title: 'Shop',
-    ),
+    // TabItem(
+    //   icon: Icons.search_sharp,
+    //   title: 'Shop',
+    // ),
+
     TabItem(
       icon: Icons.favorite_border,
       title: 'Wishlist',
     ),
     TabItem(
-      icon: Icons.shopping_cart_outlined,
-      title: 'Cart',
+      icon: Icons.account_circle,
+      title: 'profile',
     ),
     TabItem(
-      icon: Icons.account_box,
-      title: 'profile',
+      icon: Icons.shopping_cart_outlined,
+      title: 'Cart',
     ),
   ];
   List<Map<String, dynamic>> plantlist = [
@@ -31,64 +32,72 @@ class Productlist with ChangeNotifier {
       "title": "Succulent",
       "icon": Icons.favorite,
       "icons": Icons.favorite_border,
-      "subtitle": "900",
+      "subtitle": "\$900",
       "carticon": Icons.add,
+      "description": 'A weed plant, specifically referring to cannabis (Cannabis sativa), is a tall, hardy plant that has been cultivated for various purposes over thousands of years. Here are some key details about the cannabis plant:'
     },
     {
       "image": "assets/images/plants10.jpeg",
-      "title": "name",
+      "title": "Monstera",
       "icon": Icons.favorite,
       "icons": Icons.favorite_border,
-      "subtitle": "price",
+      "subtitle": "\$15.0",
       "carticon": Icons.add,
+      "description": 'A weed plant, specifically referring to cannabis (Cannabis sativa), is a tall, hardy plant that has been cultivated for various purposes over thousands of years. Here are some key details about the cannabis plant:'
     },
     {
       "image": "assets/images/plants11.jpeg",
-      "title": "name",
+      "title": "Yucca",
       "icon": Icons.favorite,
       "icons": Icons.favorite_border,
-      "subtitle": "price",
+      "subtitle": "\$35.0",
       "carticon": Icons.add,
+      "description": 'A weed plant, specifically referring to cannabis (Cannabis sativa), is a tall, hardy plant that has been cultivated for various purposes over thousands of years. Here are some key details about the cannabis plant:'
     },
     {
       "image": "assets/images/plants12.jpeg",
-      "title": "name",
+      "title": "Dracaema",
       "icon": Icons.favorite,
       "icons": Icons.favorite_border,
-      "subtitle": "price",
+      "subtitle": "\$100",
       "carticon": Icons.add,
+      "description": 'A weed plant, specifically referring to cannabis (Cannabis sativa), is a tall, hardy plant that has been cultivated for various purposes over thousands of years. Here are some key details about the cannabis plant:'
     },
     {
       "image": "assets/images/plants13.jpeg",
       "title": "weed",
       "icon": Icons.favorite,
       "icons": Icons.favorite_border,
-      "subtitle": "344",
+      "subtitle": "\$344",
       "carticon": Icons.add,
+      "description": 'A weed plant, specifically referring to cannabis (Cannabis sativa), is a tall, hardy plant that has been cultivated for various purposes over thousands of years. Here are some key details about the cannabis plant:'
     },
     {
       "image": "assets/images/plants18.jpeg",
-      "title": "Fern",
+      "title": "zucca",
       "icon": Icons.favorite,
       "icons": Icons.favorite_border,
-      "subtitle": "112",
+      "subtitle": "\$112",
       "carticon": Icons.add,
+      "description": 'A weed plant, specifically referring to cannabis (Cannabis sativa), is a tall, hardy plant that has been cultivated for various purposes over thousands of years. Here are some key details about the cannabis plant:'
     },
     {
       "image": "assets/images/plants17.jpeg",
-      "title": "plants",
+      "title": "Ficus",
       "icon": Icons.favorite,
       "icons": Icons.favorite_border,
-      "subtitle": "price",
+      "subtitle": "\$30.0",
       "carticon": Icons.add,
+      "description": 'A weed plant, specifically referring to cannabis (Cannabis sativa), is a tall, hardy plant that has been cultivated for various purposes over thousands of years. Here are some key details about the cannabis plant:'
     },
     {
       "image": "assets/images/plants8.jpeg",
-      "title": "name",
+      "title": "Aloe",
       "icon": Icons.favorite,
       "icons": Icons.favorite_border,
-      "subtitle": "price",
+      "subtitle": "\$130",
       "carticon": Icons.add,
+      "description": 'A weed plant, specifically referring to cannabis (Cannabis sativa), is a tall, hardy plant that has been cultivated for various purposes over thousands of years. Here are some key details about the cannabis plant:'
     },
   ];
   List<String> listcount = [

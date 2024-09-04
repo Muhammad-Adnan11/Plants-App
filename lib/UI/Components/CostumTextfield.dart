@@ -20,6 +20,7 @@ class CostumTextfield extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: isPassword,
+        cursorColor: Colors.black,
         decoration: InputDecoration(
           suffix: suffix,
           hintText: hintText,
