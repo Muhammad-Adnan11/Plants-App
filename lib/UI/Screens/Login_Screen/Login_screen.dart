@@ -40,14 +40,14 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 240, top: 30),
+                padding: const EdgeInsets.only(right: 215, top: 30),
                 child: Text(
                   'Login',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 150, bottom: 15),
+                padding: const EdgeInsets.only(right: 130, bottom: 15),
                 child: Text('Please sign into continue'),
               ),
               CostumTextfield(

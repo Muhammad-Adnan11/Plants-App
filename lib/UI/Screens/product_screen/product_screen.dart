@@ -17,8 +17,10 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
+
     final abc = Provider.of<Productlist>(context);
-    int selectdCat = 1;
+
+        int selectdCat = 1;
     return Scaffold(
       bottomNavigationBar: Container(
         child: BottomBarInspiredOutside(
@@ -118,7 +120,7 @@ class _ProductScreenState extends State<ProductScreen> {
               width: 300,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: abc.listcount.length,
+                  itemCount: abc.plantsList.length,
                   itemBuilder: (context, index) {
                     return Consumer<Productlist>(
                       builder: (context, vm, child) {
@@ -134,7 +136,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 padding:
                                     const EdgeInsets.only(left: 10, right: 10),
                                 child: Center(
-                                    child: Text(abc.listcount[index],
+                                    child: Text(abc.plantsList[index]['title'],
                                         style: index == vm.index
                                             ? TextStyle(color: Colors.white)
                                             : null)),
@@ -148,7 +150,8 @@ class _ProductScreenState extends State<ProductScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, top: 10),
                 child: GridView.builder(
-                  itemCount: abc.plantlist.length,
+                  itemCount: abc.plantsList[abc.index]['list'].length,
+                 // itemCount: abc.plantsList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 21,
                     mainAxisSpacing: 21,
@@ -163,10 +166,10 @@ class _ProductScreenState extends State<ProductScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailScreen(
-                                imageUrl: abc.plantlist[index]['image'],
-                                name: abc.plantlist[index]['title'],
-                                descrption: abc.plantlist[index]['description'],
-                                price: abc.plantlist[index]['subtitle']),
+                                imageUrl: abc.plantsList[abc.index]['list'][index]['image'],
+                                name: abc.plantsList[abc.index]['list'][index]['title'],
+                                descrption: abc.plantsList[abc.index]['list'][index]['description'],
+                                price: abc.plantsList[abc.index]['list'][index]['subtitle']),
                           ),
                         );
                       },
@@ -197,7 +200,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               height: 4,
                             ),
                             Image.asset(
-                              abc.plantlist[index]['image'],
+                              abc.plantsList[abc.index]['list'][index]['image'],
                               height: 100,
                               width: 120,
                               fit: BoxFit.fill,
@@ -214,11 +217,11 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                               child: ListTile(
                                 title: Text(
-                                  abc.plantlist[index]['title'],
+                                  abc.plantsList[abc.index]['list'][index]['title'],
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 subtitle:
-                                    Text(abc.plantlist[index]['subtitle']),
+                                    Text(abc.plantsList[abc.index]['list'][index]['subtitle']),
                                 trailing: Padding(
                                   padding: const EdgeInsets.only(bottom: 17),
                                   child: Container(

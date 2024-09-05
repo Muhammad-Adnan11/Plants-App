@@ -25,6 +25,7 @@ class CostumTextfield extends StatelessWidget {
           suffix: suffix,
           hintText: hintText,
           labelText: lableText,
+          labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
           prefixIcon: icon != null ? Icon(icon) : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
