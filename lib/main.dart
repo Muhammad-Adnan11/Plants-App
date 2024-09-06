@@ -10,6 +10,7 @@ import 'package:plants_mart/UI/Screens/detail_screen/detail_screen.dart';
 import 'package:plants_mart/UI/Screens/otp_screen/otp_screen.dart';
 import 'package:plants_mart/UI/Screens/product_screen/product_screen.dart';
 import 'package:plants_mart/UI/Screens/product_screen/product_screen_provider.dart';
+import 'package:plants_mart/UI/splash_screen.dart';
 import 'package:plants_mart/firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -30,7 +31,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginView(),
+        home: SplashScreen(),
       ),
     );
   }

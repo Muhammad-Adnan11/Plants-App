@@ -17,8 +17,8 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
-    var heightX=MediaQuery.of(context).size.height;
-    var widthX =MediaQuery.of(context).size.width;
+    var heightX = MediaQuery.of(context).size.height;
+    var widthX = MediaQuery.of(context).size.width;
     final LoginProvider1 = Provider.of<LoginProvider>(context);
     return Scaffold(
       body: SafeArea(
@@ -27,14 +27,15 @@ class _LoginViewState extends State<LoginView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height:heightX * 0.14,
+                height: heightX * 0.14,
               ),
               Container(
                 height: heightX * 0.14,
                 width: widthX * 0.6,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.green, width: widthX * 0.005),
+                  border:
+                      Border.all(color: Colors.green, width: widthX * 0.005),
                   image: DecorationImage(
                     image: AssetImage('assets/images/logo.jpeg'),
                   ),
@@ -45,7 +46,8 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.only(right: 215, top: 30),
                 child: Text(
                   'Login',
-                  style: TextStyle(fontSize: widthX * 0.1, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: widthX * 0.1, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -68,21 +70,20 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: const EdgeInsets.only(left: 220, top: 15),
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () { Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ProductScreen(),
+                    ),
+                  );},
                   color: Colors.green,
                   textColor: Colors.white,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      InkWell(
-                          onTap: (){ Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => ProductScreen(),
-                            ),
-                          );},
-                          child : Text('Login')),
+                      Text('Login'),
                       Icon(Icons.arrow_forward)
                     ],
                   ),
@@ -95,24 +96,24 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     Text('Dont have an account? '),
                     InkWell(
-                        onTap: () {
-                          FirebaseAuth.instance.createUserWithEmailAndPassword(
-                            email: LoginProvider1.emailController.text.trim(),
-                            password: LoginProvider1.passwordController.text
-                                .trim(),
-                          );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => SignUpScreen(),
-                            ),
-                          );
-                        },
-
-                        child: Text(
-                          'Sign up',
-                          style: TextStyle(color: Colors.green),
-                        )),
+                      onTap: () {
+                        FirebaseAuth.instance.createUserWithEmailAndPassword(
+                          email: LoginProvider1.emailController.text.trim(),
+                          password:
+                              LoginProvider1.passwordController.text.trim(),
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => SignUpScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(color: Colors.green),
+                      ),
+                    ),
                   ],
                 ),
               )

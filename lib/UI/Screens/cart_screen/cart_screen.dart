@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:plants_mart/Core/Colors.dart';
 import 'package:plants_mart/Generated/assets/assets_url.dart';
 
+import '../../Components/costum_divider_screen.dart';
+
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
@@ -247,21 +249,4 @@ class _CartScreenState extends State<CartScreen> {
   }
 }
 
-class TitleAndPrice extends StatelessWidget {
-  final String title;
-  final String price;
-  TitleAndPrice({
-    required this.title,
-    required this.price,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(title),
-        Text(price),
-      ],
-    );
-  }
-}
+
