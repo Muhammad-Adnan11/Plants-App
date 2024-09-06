@@ -15,6 +15,8 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
+    var height=MediaQuery.of(context).size.height;
+    var wigth=MediaQuery.of(context).size.width;
     final Signup = Provider.of<Signupscreen>(context);
     return Scaffold(
       body: SafeArea(
@@ -28,11 +30,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   left: 7,
                 ),
                 child: Container(
-                  width: 100,
-                  height: 100,
+                  width: wigth * 0.5,
+                  height: height * 0.14,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.green, width: 2),
+                    border: Border.all(color: Colors.green, width: wigth * 0.005),
                     image: const DecorationImage(
                       image: AssetImage('assets/images/logo.jpeg'),
                     ),
@@ -41,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Text(
                 'Create Account',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: wigth * 0.1, fontWeight: FontWeight.bold),
               ),
               CostumTextfield(lableText: 'Name', hintText: 'Enter your name', icon: Icons.man_2_sharp, controller: Signup.username),
               CostumTextfield(lableText: 'Email', hintText: 'Enter your email', icon: Icons.email, controller: Signup.emailController),

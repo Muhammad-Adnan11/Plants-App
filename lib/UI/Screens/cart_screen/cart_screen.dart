@@ -13,6 +13,8 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0XFFe7e7e7),
       appBar: AppBar(
@@ -29,26 +31,30 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             Text('Order list: 3 items'),
             Container(
-              height: 300,
-
+              height: height * 0.47,
               child: ListView.builder(
-                itemExtent: 100,
+                  itemExtent: 100,
                   itemCount: 3,
                   itemBuilder: (context, Index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Container(
-                        height: 100,
-                        width: 300,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Color(0XFFffffff)),
+                        height: height * 0.1,
+                        width: width * 0.1,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Color(0XFFffffff)),
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
                               child: Container(
-                                height: 80,
-                                width: 80,
-                                decoration: BoxDecoration(color: Color(0XFFefefef), borderRadius: BorderRadius.circular(12)),
+                                height: height * 0.12,
+                                width: width * 0.22,
+                                decoration: BoxDecoration(
+                                    color: Color(0XFFefefef),
+                                    borderRadius: BorderRadius.circular(12)),
                                 child: Image.asset(Nicepic.plantsiamge),
                               ),
                             ),
@@ -58,18 +64,20 @@ class _CartScreenState extends State<CartScreen> {
                                 Text(
                                   'Bard of paradise',
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      fontSize: width * 0.03,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   '59.99',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  height: height * 0.03,
                                 ),
                                 Container(
-                                  width: 100,
-                                  height: 30,
+                                  width: width * 0.28,
+                                  height: height * 0.04,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
                                     color: Color(0XFFe7e7e7),
@@ -90,8 +98,8 @@ class _CartScreenState extends State<CartScreen> {
                                   Row(
                                     children: [
                                       Container(
-                                        height: 18,
-                                        width: 18,
+                                        height: height * 0.03,
+                                        width: width * 0.05,
                                         color: Color(0XFF67802f),
                                         child: Icon(
                                           Icons.remove,
@@ -100,18 +108,19 @@ class _CartScreenState extends State<CartScreen> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 5,
+                                        width: width *0.02,
                                       ),
                                       Text(
                                         '1',
-                                        style: TextStyle(fontWeight: FontWeight.bold),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       SizedBox(
                                         width: 5,
                                       ),
                                       Container(
-                                        height: 18,
-                                        width: 18,
+                                        height: height * 0.03,
+                                        width: width * 0.05,
                                         color: Color(0XFF67802f),
                                         child: Icon(
                                           Icons.add,
@@ -124,8 +133,8 @@ class _CartScreenState extends State<CartScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 27),
                                     child: Container(
-                                      height: 29,
-                                      width: 80,
+                                      height: height * 0.04,
+                                      width: width *0.22,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         color: Color(0XFF67802f),
@@ -133,7 +142,8 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                       child: Text(
                                         'Check out',
-                                        style: TextStyle(color: Color(0XFFffffff)),
+                                        style:
+                                            TextStyle(color: Color(0XFFffffff)),
                                       ),
                                     ),
                                   ),
@@ -147,61 +157,89 @@ class _CartScreenState extends State<CartScreen> {
                   }),
             ),
             Container(
-              height: 45,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
-            color: Color(0XFFffffff),
+              height: height * 0.06,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Color(0XFFffffff),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Promo code',style: TextStyle(color:Colors.grey),),
+                    Text(
+                      'Promo code',
+                      style: TextStyle(color: Colors.grey),
+                    ),
                     // MaterialButton(onPressed: (){},
                     //   color: Colors.green,
                     //   height: 30,
                     // )
                     Container(
                       alignment: Alignment.center,
-                      height:30,
-                      width: 90,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(19),
+                      height: height * 0.05,
+                      width: width * 0.3,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(19),
                         color: Color(0XFF67802f),
                       ),
-                      child: Text('Apply',style: TextStyle(color: Appcolor.thridecolor),),
+                      child: Text(
+                        'Apply',
+                        style: TextStyle(color: Appcolor.thridecolor),
+                      ),
                     )
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: height *0.01,
+            ),
             Container(
-              height: 140,
+              height: height * 0.22,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12)
-
-              ),
+                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
-
                   children: [
-                    TitleAndPrice(title: 'SubTotal:',price: '\$100',),
-                    Divider(color: Colors.grey,),
-                    TitleAndPrice(title: 'Tax:',price: '\$15',),
-                    Divider(color: Colors.grey,),
-                    TitleAndPrice(title: 'Delivery Fee:',price: '\$5',),
-                    Divider(color: Colors.grey,),
-                    TitleAndPrice(title: 'Total Amount',price: '\$120',),
-
+                    TitleAndPrice(
+                      title: 'SubTotal:',
+                      price: '\$100',
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                    ),
+                    TitleAndPrice(
+                      title: 'Tax:',
+                      price: '\$15',
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                    ),
+                    TitleAndPrice(
+                      title: 'Delivery Fee:',
+                      price: '\$5',
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                    ),
+                    TitleAndPrice(
+                      title: 'Total Amount',
+                      price: '\$120',
+                    ),
                   ],
                 ),
               ),
             ),
-            MaterialButton(onPressed: (){},color: Color(0XFF67802f),
-            child: Text('checkOut'),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),),),
+            MaterialButton(
+              onPressed: () {},
+              color: Color(0XFF67802f),
+              child: Text('checkOut'),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
           ],
         ),
       ),
@@ -210,17 +248,20 @@ class _CartScreenState extends State<CartScreen> {
 }
 
 class TitleAndPrice extends StatelessWidget {
- final String title;
- final String price;
- TitleAndPrice({
-   required this.title, required this.price,
-});
- @override
-
+  final String title;
+  final String price;
+  TitleAndPrice({
+    required this.title,
+    required this.price,
+  });
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [Text(title),Text(price
-      ),],);
+      children: [
+        Text(title),
+        Text(price),
+      ],
+    );
   }
 }

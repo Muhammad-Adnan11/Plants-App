@@ -17,6 +17,8 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
+    var heightX=MediaQuery.of(context).size.height;
+    var widthX =MediaQuery.of(context).size.width;
     final LoginProvider1 = Provider.of<LoginProvider>(context);
     return Scaffold(
       body: SafeArea(
@@ -25,14 +27,14 @@ class _LoginViewState extends State<LoginView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 80,
+                height:heightX * 0.14,
               ),
               Container(
-                height: 100,
-                width: 100,
+                height: heightX * 0.14,
+                width: widthX * 0.6,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.green, width: 1.9),
+                  border: Border.all(color: Colors.green, width: widthX * 0.005),
                   image: DecorationImage(
                     image: AssetImage('assets/images/logo.jpeg'),
                   ),
@@ -43,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.only(right: 215, top: 30),
                 child: Text(
                   'Login',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: widthX * 0.1, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(

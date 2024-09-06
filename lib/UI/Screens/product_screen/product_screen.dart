@@ -17,9 +17,9 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
-
+ var heigthy=MediaQuery.of(context).size.height;
+ var widthy=MediaQuery.of(context).size.width;
     final abc = Provider.of<Productlist>(context);
-
         int selectdCat = 1;
     return Scaffold(
       bottomNavigationBar: Container(
@@ -52,8 +52,8 @@ class _ProductScreenState extends State<ProductScreen> {
         child: Column(
           children: [
             Container(
-              height: 100,
-              width: 330,
+              height: heigthy *0.15,
+              width: widthy * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: Appcolor.secondarycolor,
@@ -66,21 +66,21 @@ class _ProductScreenState extends State<ProductScreen> {
                         'Get',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 13,
+                            fontSize: widthy * 0.04,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '50% OFF',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 13,
+                            fontSize: widthy * 0.03,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '1-20 October',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 10,
+                            fontSize: widthy * 0.03,
                             fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -112,12 +112,12 @@ class _ProductScreenState extends State<ProductScreen> {
               padding: const EdgeInsets.only(top: 10, right: 210),
               child: Text(
                 'Categories',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: widthy * 0.06),
               ),
             ),
             SizedBox(
-              height: 40,
-              width: 300,
+              height: heigthy * 0.06,
+              width: widthy * 0.9,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: abc.plantsList.length,
@@ -197,20 +197,20 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: 4,
+                              height:  heigthy * 0.01,
                             ),
                             Image.asset(
                               abc.plantsList[abc.index]['list'][index]['image'],
-                              height: 100,
-                              width: 120,
+                              height: heigthy * 0.15,
+                              width: widthy * 0.3,
                               fit: BoxFit.fill,
                             ),
                             // SizedBox(
                             //   height: 10,
                             // ),
                             Container(
-                              height: 57,
-                              width: 138,
+                              height: heigthy * 0.09,
+                              width: widthy * 0.5,
                               decoration: BoxDecoration(
                                 color: Color(0XFFE6F7E4),
                                 borderRadius: BorderRadius.circular(5),
@@ -225,8 +225,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                 trailing: Padding(
                                   padding: const EdgeInsets.only(bottom: 17),
                                   child: Container(
-                                    height: 24,
-                                    width: 24,
+                                    height: heigthy * 0.04,
+                                    width: widthy * 0.07,
                                     decoration: BoxDecoration(
                                       color: Colors.green,
                                       borderRadius: BorderRadius.circular(4),

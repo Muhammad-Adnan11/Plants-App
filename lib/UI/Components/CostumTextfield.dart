@@ -11,6 +11,9 @@ class CostumTextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var heightx=MediaQuery.of(context).size.height;
+    var wigthx=MediaQuery.of(context).size.width;
+
     return Padding(
       padding: const EdgeInsets.only(
         top: 10,
@@ -32,13 +35,13 @@ class CostumTextfield extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.green, width: 2),
+            borderSide: BorderSide(color: Colors.green, width: wigthx * 0.005),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(
               color: Colors.green,
-              width: 2,
+              width: wigthx * 0.005,
             ),
           ),
         ),
