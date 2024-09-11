@@ -30,8 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Center(
             child: CircleAvatar(
-             backgroundColor: Colors.black,
-             backgroundImage: AssetImage('assets/images/plants18.upeg'),
+             backgroundImage: AssetImage('assets/images/plants18.jpeg'),
               maxRadius: 100,
             ),
           )

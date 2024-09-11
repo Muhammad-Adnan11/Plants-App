@@ -17,10 +17,10 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
- var heigthy=MediaQuery.of(context).size.height;
- var widthy=MediaQuery.of(context).size.width;
+    var heigthX = MediaQuery.of(context).size.height;
+    var widthy = MediaQuery.of(context).size.width;
     final abc = Provider.of<Productlist>(context);
-        int selectdCat = 1;
+    int selectdCat = 1;
     return Scaffold(
       bottomNavigationBar: Container(
         child: BottomBarInspiredOutside(
@@ -35,8 +35,9 @@ class _ProductScreenState extends State<ProductScreen> {
           top: -28,
           animated: false,
           itemStyle: ItemStyle.circle,
-          chipStyle:
-              const ChipStyle(notchSmoothness: NotchSmoothness.smoothEdge, background: Colors.green),
+          chipStyle: const ChipStyle(
+              notchSmoothness: NotchSmoothness.smoothEdge,
+              background: Colors.green),
         ),
       ),
       appBar: AppBar(
@@ -52,7 +53,7 @@ class _ProductScreenState extends State<ProductScreen> {
         child: Column(
           children: [
             Container(
-              height: heigthy *0.15,
+              height: heigthX * 0.15,
               width: widthy * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
@@ -89,75 +90,58 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 26, left: 10, right: 60, bottom: 10),
-            //   child: TextField(
-            //     decoration: InputDecoration(
-            //       contentPadding: EdgeInsets.symmetric(
-            //           //vertical: 20,
-            //           ),
-            //       hintText: 'Search',
-            //       hintStyle: TextStyle(fontStyle: FontStyle.italic),
-            //       prefixIcon: Icon(Icons.search),
-            //       border: OutlineInputBorder(
-            //         borderRadius: BorderRadius.circular(60),
-            //       ),
-            //       focusedBorder: OutlineInputBorder(
-            //         borderRadius: BorderRadius.circular(60),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.only(top: 10, right: 210),
               child: Text(
                 'Categories',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: widthy * 0.06),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: widthy * 0.06),
               ),
             ),
             SizedBox(
-              height: heigthy * 0.06,
+              height: heigthX * 0.06,
               width: widthy * 0.9,
               child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: abc.plantsList.length,
-                  itemBuilder: (context, index) {
-                    return Consumer<Productlist>(
-                      builder: (context, vm, child) {
-                        return InkWell(
-                          onTap: () {
-                            vm.setCat(index);
-                          },
-                          child: Card(
-                              color:
-                                  index == vm.index ? Color(0XFFB1C588) : null,
-                              // margin: EdgeInsets.only(left: 10, top: 10),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                child: Center(
-                                    child: Text(abc.plantsList[index]['title'],
-                                        style: index == vm.index
-                                            ? TextStyle(color: Colors.white)
-                                            : null)),
-                              )),
-                        );
-                      },
-                    );
-                  }),
+                scrollDirection: Axis.horizontal,
+                itemCount: abc.plantsList.length,
+                itemBuilder: (context, index) {
+                  return Consumer<Productlist>(
+                    builder: (context, vm, child) {
+                      return InkWell(
+                        onTap: () {
+                          vm.setCat(index);
+                        },
+                        child: Card(
+                          color: index == vm.index ? Color(0XFFB1C588) : null,
+                          // margin: EdgeInsets.only(left: 10, top: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 10),
+                            child: Center(
+                              child: Text(abc.plantsList[index]['title'],
+                                  style: index == vm.index
+                                      ? TextStyle(color: Colors.white)
+                                      : null),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, top: 10),
                 child: GridView.builder(
                   itemCount: abc.plantsList[abc.index]['list'].length,
-                 // itemCount: abc.plantsList.length,
+                  // itemCount: abc.plantsList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 21,
                     mainAxisSpacing: 21,
                     crossAxisCount: 2,
-                    mainAxisExtent: 200,
-                    childAspectRatio: 2 / 8,
+                    // mainAxisExtent: 210,
+                    childAspectRatio: 2 / 2.5,
                   ),
                   itemBuilder: (BuildContext context, index) {
                     return InkWell(
@@ -166,14 +150,19 @@ class _ProductScreenState extends State<ProductScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailScreen(
-                                imageUrl: abc.plantsList[abc.index]['list'][index]['image'],
-                                name: abc.plantsList[abc.index]['list'][index]['title'],
-                                descrption: abc.plantsList[abc.index]['list'][index]['description'],
-                                price: abc.plantsList[abc.index]['list'][index]['subtitle']),
+                                imageUrl: abc.plantsList[abc.index]['list']
+                                    [index]['image'],
+                                name: abc.plantsList[abc.index]['list'][index]
+                                    ['title'],
+                                descrption: abc.plantsList[abc.index]['list']
+                                    [index]['description'],
+                                price: abc.plantsList[abc.index]['list'][index]
+                                    ['subtitle']),
                           ),
                         );
                       },
                       child: Container(
+                        height: heigthX * 0.1,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             // image: DecorationImage(
@@ -187,7 +176,8 @@ class _ProductScreenState extends State<ProductScreen> {
                             border: Border.all(color: Colors.green)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //  mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left: 100, top: 8),
@@ -197,35 +187,33 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                             ),
                             SizedBox(
-                              height:  heigthy * 0.01,
+                              height: heigthX * 0.01,
                             ),
                             Image.asset(
                               abc.plantsList[abc.index]['list'][index]['image'],
-                              height: heigthy * 0.15,
+                              height: heigthX * 0.1,
                               width: widthy * 0.3,
                               fit: BoxFit.fill,
                             ),
-                            // SizedBox(
-                            //   height: 10,
-                            // ),
                             Container(
-                              height: heigthy * 0.09,
-                              width: widthy * 0.5,
+                              height: heigthX * 0.09,
+                              // width: widthy * 0.4,
                               decoration: BoxDecoration(
                                 color: Color(0XFFE6F7E4),
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                               ),
                               child: ListTile(
                                 title: Text(
-                                  abc.plantsList[abc.index]['list'][index]['title'],
+                                  abc.plantsList[abc.index]['list'][index]
+                                      ['title'],
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                subtitle:
-                                    Text(abc.plantsList[abc.index]['list'][index]['subtitle']),
+                                subtitle: Text(abc.plantsList[abc.index]['list']
+                                    [index]['subtitle']),
                                 trailing: Padding(
                                   padding: const EdgeInsets.only(bottom: 17),
                                   child: Container(
-                                    height: heigthy * 0.04,
+                                    height: heigthX * 0.035,
                                     width: widthy * 0.07,
                                     decoration: BoxDecoration(
                                       color: Colors.green,
