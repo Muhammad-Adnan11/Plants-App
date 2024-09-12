@@ -70,21 +70,37 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: const EdgeInsets.only(left: 220, top: 15),
                 child: MaterialButton(
-                  onPressed: () { Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ProductScreen(),
-                    ),
-                  );},
+                  onPressed: () {
+                    String? validation = LoginProvider1.validation();
+                    if (validation != null) {
+                      print(validation);
+                    } else {
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: LoginProvider1.emailController.text,
+                              password: LoginProvider1.passwordController.text)
+                          .then(
+                        (value) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductScreen(),
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  },
                   color: Colors.green,
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text('Login'),
-                      Icon(Icons.arrow_forward)
+                      Icon(Icons.arrow_forward),
                     ],
                   ),
                 ),
@@ -97,11 +113,6 @@ class _LoginViewState extends State<LoginView> {
                     Text('Dont have an account? '),
                     InkWell(
                       onTap: () {
-                        FirebaseAuth.instance.createUserWithEmailAndPassword(
-                          email: LoginProvider1.emailController.text.trim(),
-                          password:
-                              LoginProvider1.passwordController.text.trim(),
-                        );
                         Navigator.push(
                           context,
                           MaterialPageRoute(

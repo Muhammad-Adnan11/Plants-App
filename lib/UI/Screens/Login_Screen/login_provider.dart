@@ -7,6 +7,15 @@ class LoginProvider with ChangeNotifier {
   //var passwordCounter;
   TextEditingController get passwordController => _passwordController;
   @override
+  String? validation  (){
+    if (emailController.text.isEmpty) {
+      return 'Please Enter Your Email';
+    }
+    else if (passwordController.text.isEmpty) {
+      return 'Please Enter Your Password';
+    }
+    return null;
+  }
   void notifyListeners() {
     // TODO: implement notifyListeners
     super.notifyListeners();
