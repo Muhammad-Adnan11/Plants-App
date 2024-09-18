@@ -5,6 +5,8 @@ import 'package:plants_mart/UI/Screens/Login_Screen/Login_screen.dart';
 import 'package:plants_mart/UI/Screens/Login_Screen/login_provider.dart';
 import 'package:plants_mart/UI/Screens/Sign_up_screen/Sign_up_provider.dart';
 import 'package:plants_mart/UI/Screens/Sign_up_screen/sign_up_screen.dart';
+import 'package:plants_mart/UI/Screens/admain_screen/admain_screen.dart';
+import 'package:plants_mart/UI/Screens/admain_screen/admin_screen_provider.dart';
 import 'package:plants_mart/UI/Screens/cart_screen/cart_screen.dart';
 import 'package:plants_mart/UI/Screens/detail_screen/detail_screen.dart';
 import 'package:plants_mart/UI/Screens/otp_screen/otp_screen.dart';
@@ -37,7 +39,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => Productlist()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
-        ChangeNotifierProvider(create: (_) => Signupscreen())
+        ChangeNotifierProvider(create: (_) => Signupscreen()),
+        ChangeNotifierProvider(create: (_) => AdminProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
