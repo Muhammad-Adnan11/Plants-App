@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 class AdminProvider with ChangeNotifier{
   File? _image;
+  File? get image=> _image;
   final picker=ImagePicker();
   firebase_storage.FirebaseStorage storage=firebase_storage.FirebaseStorage.instance;
   Future gallurayGetImage()async{

@@ -77,8 +77,8 @@ class _LoginViewState extends State<LoginView> {
                     } else {
                       FirebaseAuth.instance
                           .signInWithEmailAndPassword(
-                              email: LoginProvider1.emailController.text,
-                              password: LoginProvider1.passwordController.text)
+                              email: LoginProvider1.emailController.text.trim(),
+                              password: LoginProvider1.passwordController.text.trim())
                           .then(
                         (value) {
                           Navigator.push(
