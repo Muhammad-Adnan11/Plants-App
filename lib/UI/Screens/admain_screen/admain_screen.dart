@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:plants_mart/UI/Components/CostumTextfield.dart';
 import 'package:plants_mart/UI/Screens/admain_screen/admin_screen_provider.dart';
@@ -27,6 +28,16 @@ class _AdmainScreenState extends State<AdmainScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              DropdownButton(items: admin.listitem.map((String item){
+                 return DropdownMenuItem(
+                value: item,
+                child:Text(item)
+               );
+                }).toList(),
+                  onChanged: (String? newvalue){
+
+                  },
+              ),
               InkWell(
                 onTap: (){
                   admin.gallurayGetImage();
@@ -44,6 +55,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                 height: 20,
               ),
               TextField(
+                controller: admin.plantname,
                   cursorColor: Colors.cyan,
                   decoration: InputDecoration(
                       label: Text('Plant',style: TextStyle(color: Colors.black),),
@@ -61,6 +73,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                 height: 13,
               ),
               TextField(
+                controller: admin.plantDescription,
                   cursorColor: Colors.cyan,
                   decoration: InputDecoration(
                       label: Text('Description',style: TextStyle(color: Colors.black),),
@@ -78,6 +91,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                 height: 13,
               ),
               TextField(
+                controller: admin.plantprice,
                   cursorColor: Colors.cyan,
                   decoration: InputDecoration(
                       label: Text('Price',style: TextStyle(color: Colors.black),),
@@ -96,10 +110,14 @@ class _AdmainScreenState extends State<AdmainScreen> {
               ),
             InkWell(
               onTap: ()async {
-              firebase_storage.Reference ref=firebase_storage.FirebaseStorage.instance.ref().child('path').child('image');
-              firebase_storage.UploadTask uploadTask = ref.putFile(admin.image!.absolute);
-               await Future.value(uploadTask);
-               var newurl = ref.getDownloadURL();
+                admin.fstroge();
+                admin.addToFireStore();
+                // FirebaseFirestore.instance.collection('Plants').doc().set({
+                //   'plant Name':admin.plantname.text.trim(),
+                //   'Plant Description':admin.plantDescription.text.trim(),
+                //   'Plant Price':admin.plantprice.text.trim(),
+                //
+                // });
               },
               child: Container(
                 height: 50,
