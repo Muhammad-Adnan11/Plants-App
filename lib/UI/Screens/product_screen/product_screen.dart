@@ -1,6 +1,7 @@
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:awesome_bottom_bar/tab_item.dart';
 import 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:plants_mart/Core/Colors.dart';
 import 'package:plants_mart/UI/Screens/detail_screen/detail_screen.dart';
@@ -133,108 +134,99 @@ class _ProductScreenState extends State<ProductScreen> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, top: 10),
-                child: GridView.builder(
-                  itemCount: abc.plantsList[abc.index]['list'].length,
-                  // itemCount: abc.plantsList.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 21,
-                    mainAxisSpacing: 21,
-                    crossAxisCount: 2,
-                    // mainAxisExtent: 210,
-                    childAspectRatio: 2 / 2.5,
-                  ),
-                  itemBuilder: (BuildContext context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailScreen(
-                                imageUrl: abc.plantsList[abc.index]['list']
-                                    [index]['image'],
-                                name: abc.plantsList[abc.index]['list'][index]
-                                    ['title'],
-                                descrption: abc.plantsList[abc.index]['list']
-                                    [index]['description'],
-                                price: abc.plantsList[abc.index]['list'][index]
-                                    ['subtitle']),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        height: heigthX * 0.1,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            // image: DecorationImage(
-                            //   image: AssetImage(
-                            //     abc.plantlist[index]['image'],
-                            //   ),
-                            //   //fit: BoxFit.cover,
-                            // ),
-                            borderRadius: BorderRadius.circular(12),
-                            //color: Colors.greenAccent,
-                            border: Border.all(color: Colors.green)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //  mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 100, top: 8),
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.green,
+                child: StreamBuilder(stream: FirebaseFirestore.instance.collection('outdoor').snapshots(), builder: (context ,snapshot){
+                  return GridView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    // itemCount: abc.plantsList.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 21,
+                      mainAxisSpacing: 21,
+                      crossAxisCount: 2,
+                      // mainAxisExtent: 210,
+                      childAspectRatio: 2 / 2.5,
+                    ),
+                    itemBuilder: (BuildContext context, index) {
+                      var data=snapshot.data!.docs[index];
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(
+                                  imageUrl: abc.plantsList[abc.index]['list']
+                                  [index]['image'],
+                                  name: abc.plantsList[abc.index]['list'][index]
+                                  ['title'],
+                                  descrption: abc.plantsList[abc.index]['list']
+                                  [index]['description'],
+                                  price: abc.plantsList[abc.index]['list'][index]
+                                  ['subtitle']),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: heigthX * 0.1,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              image: DecorationImage(
+                                image: NetworkImage(data['image_url'])
                               ),
-                            ),
-                            SizedBox(
-                              height: heigthX * 0.01,
-                            ),
-                            Image.asset(
-                              abc.plantsList[abc.index]['list'][index]['image'],
-                              height: heigthX * 0.1,
-                              width: widthy * 0.3,
-                              fit: BoxFit.fill,
-                            ),
-                            Container(
-                              height: heigthX * 0.09,
-                              // width: widthy * 0.4,
-                              decoration: BoxDecoration(
-                                color: Color(0XFFE6F7E4),
-                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                              ),
-                              child: ListTile(
-                                title: Text(
-                                  abc.plantsList[abc.index]['list'][index]
-                                      ['title'],
-                                  overflow: TextOverflow.ellipsis,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.green)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100, top: 8),
+                                child: Icon(
+                                  Icons.favorite,
+                                  color: Colors.green,
                                 ),
-                                subtitle: Text(abc.plantsList[abc.index]['list']
-                                    [index]['subtitle']),
-                                trailing: Padding(
-                                  padding: const EdgeInsets.only(bottom: 17),
-                                  child: Container(
-                                    height: heigthX * 0.035,
-                                    width: widthy * 0.07,
-                                    decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.add,
-                                        color: Colors.white,
+                              ),
+                              SizedBox(
+                                height: heigthX * 0.01,
+                              ),
+                              Container(
+                                height: heigthX * 0.09,
+                                // width: widthy * 0.4,
+                                decoration: BoxDecoration(
+                                  color: Color(0XFFE6F7E4),
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                                ),
+                                child: ListTile(
+                                  title: Text(
+                                    data['plant Name'],
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  subtitle: Text(data['Plant Price'].toString()),
+                                  trailing: Padding(
+                                    padding: const EdgeInsets.only(bottom: 17),
+                                    child: Container(
+                                      height: heigthX * 0.035,
+                                      width: widthy * 0.07,
+                                      decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                ),
+                      );
+                    },
+                  );
+                }
+                )
               ),
             )
           ],

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,7 +28,8 @@ class AdminProvider with ChangeNotifier{
    }
    notifyListeners();
   }
-  void fstroge() async{
+
+  void addToFireStore(String cal)async{
     firebase_storage.Reference ref=firebase_storage.FirebaseStorage.instance.ref().child('Image').child(DateTime.now().millisecond.toString());
     firebase_storage.UploadTask uploadTask = ref.putFile(image!.absolute);
     await Future.value(uploadTask);
@@ -37,10 +37,7 @@ class AdminProvider with ChangeNotifier{
     _imagePath = ref.fullPath;
     print(_imageurl);
     print(_imagePath);
-  }
-
-  void addToFireStore()async{
-   await FirebaseFirestore.instance.collection('Plants').doc().set({
+   await FirebaseFirestore.instance.collection(cal).doc().set({
       'plant Name':plantname.text.trim(),
       'Plant Description':plantDescription.text.trim(),
       'Plant Price':plantprice.text.trim(),
