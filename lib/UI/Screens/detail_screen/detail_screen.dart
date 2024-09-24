@@ -33,7 +33,7 @@ class _DetailScreenState extends State<DetailScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 50, top: 30),
-              child: Image.asset(widget.imageUrl),
+              child: Image.network(widget.imageUrl),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 10),

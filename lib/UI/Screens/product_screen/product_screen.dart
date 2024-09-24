@@ -133,101 +133,105 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(left: 18, right: 18, top: 10),
-                child: StreamBuilder(stream: FirebaseFirestore.instance.collection('outdoor').snapshots(), builder: (context ,snapshot){
-                  return GridView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    // itemCount: abc.plantsList.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 21,
-                      mainAxisSpacing: 21,
-                      crossAxisCount: 2,
-                      // mainAxisExtent: 210,
-                      childAspectRatio: 2 / 2.5,
-                    ),
-                    itemBuilder: (BuildContext context, index) {
-                      var data=snapshot.data!.docs[index];
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                  imageUrl: abc.plantsList[abc.index]['list']
-                                  [index]['image'],
-                                  name: abc.plantsList[abc.index]['list'][index]
-                                  ['title'],
-                                  descrption: abc.plantsList[abc.index]['list']
-                                  [index]['description'],
-                                  price: abc.plantsList[abc.index]['list'][index]
-                                  ['subtitle']),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          height: heigthX * 0.1,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              image: DecorationImage(
-                                image: NetworkImage(data['image_url'])
-                              ),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.green)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 100, top: 8),
-                                child: Icon(
-                                  Icons.favorite,
-                                  color: Colors.green,
-                                ),
-                              ),
-                              SizedBox(
-                                height: heigthX * 0.01,
-                              ),
-                              Container(
-                                height: heigthX * 0.09,
-                                // width: widthy * 0.4,
-                                decoration: BoxDecoration(
-                                  color: Color(0XFFE6F7E4),
-                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                                ),
-                                child: ListTile(
-                                  title: Text(
-                                    data['plant Name'],
-                                    overflow: TextOverflow.ellipsis,
+                  padding: const EdgeInsets.only(left: 18, right: 18, top: 10),
+                  child: StreamBuilder(
+                      stream: abc.count(abc.index),
+                      builder: (context, snapshot) {
+                        return GridView.builder(
+                          itemCount: snapshot.data!.docs.length,
+                          // itemCount: abc.plantsList.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: 21,
+                            mainAxisSpacing: 21,
+                            crossAxisCount: 2,
+                            // mainAxisExtent: 210,
+                            childAspectRatio: 2 / 2.5,
+                          ),
+                          itemBuilder: (BuildContext context, index) {
+                            var data = snapshot.data!.docs[index];
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailScreen(
+                                      imageUrl: data['image_url'],
+                                      name: data['plant Name'],
+                                      descrption: data['Plant Description'],
+                                      price: data['Plant Price'],
+                                    ),
                                   ),
-                                  subtitle: Text(data['Plant Price'].toString()),
-                                  trailing: Padding(
-                                    padding: const EdgeInsets.only(bottom: 17),
-                                    child: Container(
-                                      height: heigthX * 0.035,
-                                      width: widthy * 0.07,
-                                      decoration: BoxDecoration(
+                                );
+                              },
+                              child: Container(
+                                height: heigthX * 0.1,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    image: DecorationImage(
+                                        image: NetworkImage(data['image_url'])),
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(color: Colors.green)),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 100, top: 8),
+                                      child: Icon(
+                                        Icons.favorite,
                                         color: Colors.green,
-                                        borderRadius: BorderRadius.circular(4),
                                       ),
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.add,
-                                          color: Colors.white,
+                                    ),
+                                    SizedBox(
+                                      height: heigthX * 0.01,
+                                    ),
+                                    Container(
+                                      height: heigthX * 0.09,
+                                      // width: widthy * 0.4,
+                                      decoration: BoxDecoration(
+                                        color: Color(0XFFE6F7E4),
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10)),
+                                      ),
+                                      child: ListTile(
+                                        title: Text(
+                                          data['plant Name'],
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        subtitle: Text(
+                                            data['Plant Price'].toString()),
+                                        trailing: Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 17),
+                                          child: Container(
+                                            height: heigthX * 0.035,
+                                            width: widthy * 0.07,
+                                            decoration: BoxDecoration(
+                                              color: Colors.green,
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                            child: Center(
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                }
-                )
-              ),
+                            );
+                          },
+                        );
+                      })),
             )
           ],
         ),

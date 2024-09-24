@@ -421,8 +421,6 @@ class Productlist with ChangeNotifier {
   //   },
   // ];
 
-
-
   List<String> listcount = [
     'popular',
     'indoor',
@@ -436,5 +434,23 @@ class Productlist with ChangeNotifier {
     _index = index;
 
     notifyListeners();
+  }
+  Stream<QuerySnapshot> count(int index){
+    switch(index){
+     case 0:
+       return FirebaseFirestore.instance.collection('popular').snapshots();
+       break;
+      case 1:
+        return FirebaseFirestore.instance.collection('outdoor').snapshots();
+        break;
+      case 2:
+        return FirebaseFirestore.instance.collection('outdoor').snapshots();
+        break;
+      case 3:
+        return FirebaseFirestore.instance.collection('Fashion').snapshots();
+        break;
+      default:
+        return FirebaseFirestore.instance.collection('default').snapshots();
+    }
   }
 }
