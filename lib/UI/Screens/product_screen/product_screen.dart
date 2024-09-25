@@ -23,24 +23,6 @@ class _ProductScreenState extends State<ProductScreen> {
     final abc = Provider.of<Productlist>(context);
     int selectdCat = 1;
     return Scaffold(
-      bottomNavigationBar: Container(
-        child: BottomBarInspiredOutside(
-          items: abc.items,
-          backgroundColor: Colors.white,
-          color: Colors.green,
-          colorSelected: Colors.white,
-          indexSelected: abc.stateindex,
-          onTap: (int index) => setState(() {
-            abc.stateindex = index;
-          }),
-          top: -28,
-          animated: false,
-          itemStyle: ItemStyle.circle,
-          chipStyle: const ChipStyle(
-              notchSmoothness: NotchSmoothness.smoothEdge,
-              background: Colors.green),
-        ),
-      ),
       appBar: AppBar(
         title: Text('Search'),
         leading: IconButton(
@@ -50,6 +32,7 @@ class _ProductScreenState extends State<ProductScreen> {
         centerTitle: true,
         shadowColor: Colors.amber,
       ),
+
       body: SafeArea(
         child: Column(
           children: [
@@ -169,6 +152,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     image: DecorationImage(
+                                      //fit: BoxFit.fill,
                                         image: NetworkImage(data['image_url'])),
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(color: Colors.green)),

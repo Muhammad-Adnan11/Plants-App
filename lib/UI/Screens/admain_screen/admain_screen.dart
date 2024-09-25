@@ -130,9 +130,9 @@ class _AdmainScreenState extends State<AdmainScreen> {
 
                       admin.addToFireStore('Indoor');
                     }
-                    if (admin.valuechoose == 'Fashoin 4') {
+                    if (admin.valuechoose == 'Fashion 4') {
 
-                      admin.addToFireStore('fashoin');
+                      admin.addToFireStore('fashion');
                     }
 
                     // FirebaseFirestore.instance.collection('Plants').doc().set({

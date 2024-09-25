@@ -10,14 +10,9 @@ class Productlist with ChangeNotifier {
       // title: 'Home',
     ),
     // TabItem(
-    //   icon: Icons.search_sharp,
-    //   title: 'Shop',
+    //   icon: Icons.favorite_border,
+    //   title: 'Wishlist',
     // ),
-
-    TabItem(
-      icon: Icons.favorite_border,
-      title: 'Wishlist',
-    ),
     TabItem(
       icon: Icons.account_circle,
       title: 'profile',
@@ -441,13 +436,13 @@ class Productlist with ChangeNotifier {
        return FirebaseFirestore.instance.collection('popular').snapshots();
        break;
       case 1:
-        return FirebaseFirestore.instance.collection('outdoor').snapshots();
+        return FirebaseFirestore.instance.collection('indoor').snapshots();
         break;
       case 2:
         return FirebaseFirestore.instance.collection('outdoor').snapshots();
         break;
       case 3:
-        return FirebaseFirestore.instance.collection('Fashion').snapshots();
+        return FirebaseFirestore.instance.collection('fashion').snapshots();
         break;
       default:
         return FirebaseFirestore.instance.collection('default').snapshots();

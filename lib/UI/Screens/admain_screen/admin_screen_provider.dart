@@ -8,7 +8,7 @@ class AdminProvider with ChangeNotifier{
   TextEditingController plantname=TextEditingController();
   TextEditingController plantDescription=TextEditingController();
   TextEditingController plantprice=TextEditingController();
-  List<String> listitem=['Popular 1', 'Outdoor 2','Indoor 3','Fashoin 4'];
+  List<String> listitem=['Popular 1', 'Outdoor 2','Indoor 3','Fashion 4'];
   var valuechoose='Popular 1';
   String _imageurl='';
   String _imagePath='';

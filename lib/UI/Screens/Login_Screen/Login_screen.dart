@@ -7,6 +7,8 @@ import 'package:plants_mart/UI/Screens/product_screen/product_screen.dart';
 import 'package:plants_mart/core/colors.dart';
 import 'package:provider/provider.dart';
 
+import '../buttom_navigation_screen.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -84,7 +86,7 @@ class _LoginViewState extends State<LoginView> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => ProductScreen(),
+                              builder: (_) => Buttomnavigation(),
                             ),
                           );
                         },
