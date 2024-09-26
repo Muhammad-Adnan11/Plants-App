@@ -120,6 +120,9 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: StreamBuilder(
                       stream: abc.count(abc.index),
                       builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
                         return GridView.builder(
                           itemCount: snapshot.data!.docs.length,
                           // itemCount: abc.plantsList.length,
@@ -169,9 +172,23 @@ class _ProductScreenState extends State<ProductScreen> {
                                         color: Colors.green,
                                       ),
                                     ),
+                                   Padding(
+                                     padding: const EdgeInsets.only(right: 110,bottom: 40),
+                                     child: Column(
+                                       children: [
+                                         Icon(Icons.edit,
+                                         color: Colors.green,
+                                         ),
+                                         Icon(Icons.delete,
+                                           color: Colors.green,
+                                         )
+                                       ],
+                                     ),
+                                   ),
                                     SizedBox(
                                       height: heigthX * 0.01,
                                     ),
+
                                     Container(
                                       height: heigthX * 0.09,
                                       // width: widthy * 0.4,

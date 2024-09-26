@@ -9,15 +9,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../Components/costum_row1.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
-
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
-
 class _ProfileScreenState extends State<ProfileScreen> {
   String docID = '';
   String imageUrl = '';
-
   @override
   Widget build(BuildContext context) {
     // final profileProvider =
@@ -49,10 +46,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             }
-
+            if (snapshot.data?.exists == false || snapshot.data == null) {
+              return Center(child: Text('No user data found.'));
+            }
             // * Check if snapshot and data are not null *
             if (snapshot != null && snapshot.data != null) {
-              var docID = snapshot.data!.id;
+             // var docID = snapshot.data!.id;
+              var userData = snapshot.data?.data() as Map<String, dynamic>?;
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -110,12 +110,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ))),
                   ]),
                   Text(
-                    ' ${snapshot.data!['user name']}',
+                    userData!['name'],
                     style:
                     TextStyle(fontSize: 3.5.h, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    ' ${snapshot.data!['email']}',
+                    userData!['email'],
                     style: TextStyle(
                         color: Colors.black.withOpacity(0.5), fontSize: 2.3.h),
                   ),
@@ -134,8 +134,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Custom_Row1(
                       text: 'Invite a Friend',
                       icon: Icons.add_reaction_outlined),
-                  snapshot.data!['Role'] == 'admin'
-                      ? InkWell(
+                  // snapshot.data!['Role'] == 'admin'
+                       InkWell(
                       onTap: () {
                         // Navigator.push(
                         //     context,
@@ -144,12 +144,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         //     ));
                       },
                       child: Custom_Row1(
-                          text: 'Upload File', icon: Icons.file_upload))
-                      : Container(),
+                          text: 'Upload File', icon: Icons.file_upload)),
+
                   InkWell(
-                      // onTap: () {
+                       onTap: () {
                       //   profileProvider.logout(context);
-                      // },
+                      },
                       child: Custom_Row1(text: 'Logout', icon: Icons.logout)),
                 ],
               );

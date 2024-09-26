@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Signupscreen with ChangeNotifier {
+  User? userId=FirebaseAuth.instance.currentUser;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController username = TextEditingController();
@@ -15,10 +16,11 @@ class Signupscreen with ChangeNotifier {
               password: passwordController.text.trim())
           .then(
         (value) {
-          FirebaseFirestore.instance.collection('user').doc().set(
+          FirebaseFirestore.instance.collection('user').doc(userId!.uid).set(
             {
               'name': username.text.trim(),
               'email': emailController.text.trim(),
+              'userId':userId!.uid,
             },
           );
         },

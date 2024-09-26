@@ -6,6 +6,7 @@ import 'package:plants_mart/UI/Screens/Login_Screen/Login_screen.dart';
 import 'package:plants_mart/UI/Screens/Sign_up_screen/Sign_up_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../buttom_navigation_screen.dart';
 import '../product_screen/product_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -83,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => ProductScreen(),
+                          builder: (_) => Buttomnavigation(),
                         ),
                       );
                     }

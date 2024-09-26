@@ -115,20 +115,21 @@ class _DetailScreenState extends State<DetailScreen> {
                       SizedBox(
                         width: width * 0.1,
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CartScreen()));
-                        },
-                        child: Text(
+                      // InkWell(
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => CartScreen()));
+                      //   },
+                      //   child:
+                        Text(
                           'Add to Cart',
                           style: TextStyle(
                             color: Color(0XFFffffff),
                           ),
                         ),
-                      ),
+                      //),
                     ],
                   ),
                 )
