@@ -155,7 +155,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     image: DecorationImage(
-                                      //fit: BoxFit.fill,
+                                      fit: BoxFit.cover,
                                         image: NetworkImage(data['image_url'])),
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(color: Colors.green)),
