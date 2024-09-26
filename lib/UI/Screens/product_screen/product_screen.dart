@@ -2,6 +2,7 @@ import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:awesome_bottom_bar/tab_item.dart';
 import 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:plants_mart/Core/Colors.dart';
 import 'package:plants_mart/UI/Screens/detail_screen/detail_screen.dart';
@@ -18,21 +19,21 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
+    User? userId= FirebaseAuth.instance.currentUser;
     var heigthX = MediaQuery.of(context).size.height;
     var widthy = MediaQuery.of(context).size.width;
     final abc = Provider.of<Productlist>(context);
     int selectdCat = 1;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
+        title: Text('Plant Shop'),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back, color: Colors.black),
+        //   onPressed: () {},
+        // ),
         centerTitle: true,
         shadowColor: Colors.amber,
       ),
-
       body: SafeArea(
         child: Column(
           children: [
@@ -120,7 +121,8 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: StreamBuilder(
                       stream: abc.count(abc.index),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                           return Center(child: CircularProgressIndicator());
                         }
                         return GridView.builder(
@@ -153,41 +155,58 @@ class _ProductScreenState extends State<ProductScreen> {
                               child: Container(
                                 height: heigthX * 0.1,
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                        image: NetworkImage(data['image_url'])),
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(color: Colors.green)),
+                                  color: Colors.white,
+                                  border:Border.all(color: Colors.green),
+
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                // image: DecorationImage(
+                                //     //fit: BoxFit.cover,
+                                //     image: NetworkImage(data['image_url'])),
+                                // borderRadius: BorderRadius.circular(12),
+                                // border: Border.all(color: Colors.green)),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 100, top: 8),
-                                      child: Icon(
-                                        Icons.favorite,
-                                        color: Colors.green,
+                                    Expanded(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color:Colors.white,
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              data['image_url'],
+                                            ),
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                   Padding(
-                                     padding: const EdgeInsets.only(right: 110,bottom: 40),
-                                     child: Column(
-                                       children: [
-                                         Icon(Icons.edit,
-                                         color: Colors.green,
-                                         ),
-                                         Icon(Icons.delete,
-                                           color: Colors.green,
-                                         )
-                                       ],
-                                     ),
-                                   ),
-                                    SizedBox(
-                                      height: heigthX * 0.01,
-                                    ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(
+                                    //       left: 100, top: 8),
+                                    //   child: Icon(
+                                    //     Icons.favorite,
+                                    //     color: Colors.green,
+                                    //   ),
+                                    // ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(right: 110,bottom: 40),
+                                    //   child: Column(
+                                    //     children: [
+                                    //       Icon(Icons.edit,
+                                    //         color: Colors.green,
+                                    //       ),
+                                    //       Icon(Icons.delete,
+                                    //         color: Colors.green,
+                                    //       )
+                                    //     ],
+                                    //   ),
+                                    // ),
+                                    // SizedBox(
+                                    //   height: heigthX * 0.01,
+                                    // ),
 
                                     Container(
                                       height: heigthX * 0.09,
@@ -198,33 +217,53 @@ class _ProductScreenState extends State<ProductScreen> {
                                             bottomLeft: Radius.circular(10),
                                             bottomRight: Radius.circular(10)),
                                       ),
-                                      child: ListTile(
-                                        title: Text(
-                                          data['plant Name'],
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        subtitle: Text(
-                                            data['Plant Price'].toString()),
-                                        trailing: Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 17),
-                                          child: Container(
-                                            height: heigthX * 0.035,
-                                            width: widthy * 0.07,
-                                            decoration: BoxDecoration(
-                                              color: Colors.green,
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            child: Center(
-                                              child: Icon(
-                                                Icons.add,
-                                                color: Colors.white,
+                                      child: StreamBuilder<DocumentSnapshot>(
+                                          stream: FirebaseFirestore.instance.collection('user').doc(userId!.uid).snapshots(),
+                                          builder: (context, snapsht){
+                                            if (snapshot.connectionState ==
+                                                ConnectionState.waiting) {
+                                              return Center(child: CircularProgressIndicator());
+                                            }
+                                        return ListTile(
+                                          title: Text(
+                                            data['plant Name'],
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          subtitle: Text(
+                                              data['Plant Price'].toString()),
+                                          trailing:
+                                          snapsht.data!['role']=='admin'?
+                                          Column(
+                                            children: [
+                                              Icon(Icons.edit,
+                                                color: Colors.green,
+                                              ),
+                                              Icon(Icons.delete,
+                                                color: Colors.green,
+                                              ),
+                                            ],
+                                          ):
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.only(bottom: 17),
+                                            child: Container(
+                                              height: heigthX * 0.035,
+                                              width: widthy * 0.07,
+                                              decoration: BoxDecoration(
+                                                color: Colors.green,
+                                                borderRadius:
+                                                BorderRadius.circular(4),
+                                              ),
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.add,
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
+                                        );
+                                      })
                                     ),
                                   ],
                                 ),

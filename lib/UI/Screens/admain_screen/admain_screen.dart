@@ -128,7 +128,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                     }
                     if (admin.valuechoose == 'Indoor 3') {
 
-                      admin.addToFireStore('Indoor');
+                      admin.addToFireStore('indoor');
                     }
                     if (admin.valuechoose == 'Fashion 4') {
 

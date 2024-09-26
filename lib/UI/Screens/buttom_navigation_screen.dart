@@ -16,8 +16,9 @@ class Buttomnavigation extends StatefulWidget {
 class _ButtomnavigationState extends State<Buttomnavigation> {
   List<Widget> screens=[
     const ProductScreen(),
-    const ProfileScreen(),
     const CartScreen(),
+    const ProfileScreen(),
+
 
   ];
   int selectscreen=0;

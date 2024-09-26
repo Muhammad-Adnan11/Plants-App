@@ -54,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   lableText: 'Name',
                   hintText: 'Enter your name',
                   icon: Icons.man_2_sharp,
-                  controller: Signup.username),
+                  controller:Signup.usernameController ),
               CostumTextfield(
                   lableText: 'Email',
                   hintText: 'Enter your email',
@@ -64,12 +64,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   lableText: 'Password',
                   hintText: 'Enter your password',
                   icon: Icons.lock,
+                  suffix: Icon(Icons.visibility, color: Colors.black),
                   controller: Signup.passwordController),
               CostumTextfield(
                   lableText: 'Confirm',
                   hintText: 'Confirm password',
                   icon: Icons.lock,
-                  controller: Signup.confirmpassword),
+                  suffix: Icon(Icons.visibility, color: Colors.black),
+                  controller: Signup.confirmPasswordController),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 180),
                 child: MaterialButton(

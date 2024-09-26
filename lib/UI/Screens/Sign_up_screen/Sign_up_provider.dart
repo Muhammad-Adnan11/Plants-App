@@ -3,44 +3,47 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Signupscreen with ChangeNotifier {
-  User? userId=FirebaseAuth.instance.currentUser;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController username = TextEditingController();
-  TextEditingController confirmpassword = TextEditingController();
-  String? auth() {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  Future<String?> auth() async {
     try {
-      FirebaseAuth.instance
+      // Create user with email and password
+      UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-              email: emailController.text.trim(),
-              password: passwordController.text.trim())
-          .then(
-        (value) {
-          FirebaseFirestore.instance.collection('user').doc(userId!.uid).set(
-            {
-              'name': username.text.trim(),
-              'email': emailController.text.trim(),
-              'userId':userId!.uid,
-            },
-          );
-        },
-      );
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+
+      User? user = userCredential.user;
+
+      // Check if the user is not null and proceed with storing user details in Firestore
+      if (user != null) {
+        await FirebaseFirestore.instance.collection('user').doc(user.uid).set({
+          'name': usernameController.text.trim(),
+          'email': emailController.text.trim(),
+          'userId': user.uid,
+          'role':'user',
+        });
+        return 'User registered successfully!';
+      }
     } catch (e) {
       print(e);
+      return 'Error: ${e.toString()}';
     }
+    return null;
   }
-  String? validation  (){
+  String? validation() {
     if (emailController.text.isEmpty) {
       return 'Please Enter Your Email';
-    }
-    else if (passwordController.text.isEmpty) {
+    } else if (passwordController.text.isEmpty) {
       return 'Please Enter Your Password';
     }
     return null;
   }
   @override
   void notifyListeners() {
-    // TODO: implement notifyListeners
     super.notifyListeners();
   }
 }

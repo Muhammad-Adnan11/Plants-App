@@ -60,13 +60,14 @@ class _LoginViewState extends State<LoginView> {
                 lableText: 'Email',
                 hintText: 'Enter your Email',
                 icon: Icons.email,
-                suffix: Icon(Icons.visibility, color: Colors.black),
+               // suffix: Icon(Icons.visibility, color: Colors.black),
                 controller: LoginProvider1.emailController,
               ),
               CostumTextfield(
                 lableText: 'Password',
                 hintText: 'Enter your password',
                 icon: Icons.lock,
+                suffix: Icon(Icons.visibility, color: Colors.black),
                 controller: LoginProvider1.passwordController,
               ),
               Padding(

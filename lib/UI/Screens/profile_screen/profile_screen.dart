@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../Components/costum_row1.dart';
+import '../admain_screen/admain_screen.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
   @override
@@ -19,7 +20,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     // final profileProvider =
     // Provider.of<ProfileProvider>(context, listen: false);
- User? userid=FirebaseAuth.instance.currentUser;
+    // User? userid=FirebaseAuth.instance.currentUser;
+    // print("User ID: ${userid!.uid}");
+    User? userid = FirebaseAuth.instance.currentUser;
+    if (userid == null) {
+      print("No user is currently logged in.");
+    } else {
+      print("User ID: ${userid.uid}");
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black12,
@@ -38,6 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               .doc(userid!.uid)
               .snapshots(),
           builder: (context, snapshot) {
+            print("Snapshot data: ${snapshot.data?.data()}");
             if (snapshot.hasError) {
               return Center(
                   child: Text(
@@ -51,29 +60,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
             }
             // * Check if snapshot and data are not null *
             if (snapshot != null && snapshot.data != null) {
-             // var docID = snapshot.data!.id;
+              // var docID = snapshot.data!.id;
               var userData = snapshot.data?.data() as Map<String, dynamic>?;
+              if (userData == null) {
+                return Center(child: Text('User data is unavailable.'));
+              }
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Stack(children: [
                     CircleAvatar(
                       // backgroundImage: NetworkImage(snapshot.data!['image']),
-                      radius: 11.h,
-                      child:
-                      //snapshot.data!['image'] == ''
-                         // ?
-                Icon(
-                        Icons.person,
-                        size: 130,
-                      )
-                         // : null,
+                        radius: 11.h,
+                        child:
+                        //snapshot.data!['image'] == ''
+                        // ?
+                        Icon(
+                          Icons.person,
+                          size: 130,
+                        )
+                      // : null,
                     ),
                     Positioned(
                         right: 5.w,
                         bottom: 1.5.h,
                         child: InkWell(
-                            onTap: () async {
+                            // onTap: () async {
                             //   ImagePicker imagePicker = ImagePicker();
                             //   XFile? file = await imagePicker.pickImage(
                             //       source: ImageSource.camera);
@@ -98,24 +110,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             //     print(e);
                             //   }
                             //   FirebaseFirestore.instance
-                            //       .collection('Users')
+                            //       .collection('user')
                             //       .doc(docID.toString())
                             //       .update({
                             //     'image': imageUrl,
                             //   }).then((value) => Navigator.pop(context));
-                            },
+                            // },
                             child: Icon(
                               Icons.camera_alt,
                               size: 3.3.h,
                             ))),
                   ]),
                   Text(
-                    userData!['name'],
+                    //'kjhg',
+                    userData!['email'],
                     style:
                     TextStyle(fontSize: 3.5.h, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    userData!['email'],
+                    userData!['name'],
+                    //'adda',
                     style: TextStyle(
                         color: Colors.black.withOpacity(0.5), fontSize: 2.3.h),
                   ),
@@ -135,7 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       text: 'Invite a Friend',
                       icon: Icons.add_reaction_outlined),
                   // snapshot.data!['Role'] == 'admin'
-                       InkWell(
+                  InkWell(
                       onTap: () {
                         // Navigator.push(
                         //     context,
@@ -143,12 +157,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         //       builder: (context) => AdminScreen(),
                         //     ));
                       },
-                      child: Custom_Row1(
-                          text: 'Upload File', icon: Icons.file_upload)),
+                      child:
+                      snapshot.data!['role']=='admin'?
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>AdmainScreen()));
+                        },
+                        child: Custom_Row1(
+                            text: 'Upload File', icon: Icons.file_upload),
+                      ):SizedBox()),
 
                   InkWell(
-                       onTap: () {
-                      //   profileProvider.logout(context);
+                      onTap: () {
+                        //   profileProvider.logout(context);
                       },
                       child: Custom_Row1(text: 'Logout', icon: Icons.logout)),
                 ],

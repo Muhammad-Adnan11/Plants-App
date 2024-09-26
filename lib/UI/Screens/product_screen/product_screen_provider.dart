@@ -14,13 +14,14 @@ class Productlist with ChangeNotifier {
     //   title: 'Wishlist',
     // ),
     TabItem(
-      icon: Icons.account_circle,
-      title: 'profile',
-    ),
-    TabItem(
       icon: Icons.shopping_cart_outlined,
       title: 'Cart',
     ),
+    TabItem(
+      icon: Icons.account_circle,
+      title: 'profile',
+    ),
+
   ];
 
   List<Map<String, dynamic>> plantsList = [

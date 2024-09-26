@@ -238,7 +238,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
               MaterialButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>AdmainScreen()));
+                  //Navigator.push(context, MaterialPageRoute(builder: (_)=>AdmainScreen()));
                 },
                 color: Color(0XFF67802f),
                 child: Text('checkOut'),
