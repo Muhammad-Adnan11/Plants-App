@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:plants_mart/Generated/assets/assets_url.dart';
 import 'package:plants_mart/UI/Screens/cart_screen/cart_screen.dart';
@@ -105,32 +107,62 @@ class _DetailScreenState extends State<DetailScreen> {
                   decoration: BoxDecoration(
                       color: Color(0XFF67802f),
                       borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.shopping_cart,
-                        color: Color(0XFFffffff),
-                      ),
-                      SizedBox(
-                        width: width * 0.1,
-                      ),
-                      // InkWell(
-                      //   onTap: () {
-                      //     Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //             builder: (context) => CartScreen()));
-                      //   },
-                      //   child:
+                  child: InkWell(
+                    onTap: () {
+                      FirebaseFirestore.instance
+                          .collection('cart data')
+                          .doc()
+                          .set({
+                        'imageUrl': widget.imageUrl,
+                        'name': widget.name,
+                        'price': widget.price,
+                        'userid': FirebaseAuth.instance.currentUser!.uid,
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Center(
+                            child: Text('Item added in cart',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                            ),
+                          ),
+                          backgroundColor: Colors.green,
+                          duration: Duration(seconds: 3),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15), // Set border radius
+                          ),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.shopping_cart,
+                          color: Color(0XFFffffff),
+                        ),
+                        SizedBox(
+                          width: width * 0.1,
+                        ),
+                        // InkWell(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //             builder: (context) => CartScreen()));
+                        //   },
+                        //   child:
+
                         Text(
                           'Add to Cart',
                           style: TextStyle(
                             color: Color(0XFFffffff),
                           ),
                         ),
-                      //),
-                    ],
+                        //),
+                      ],
+                    ),
                   ),
                 )
               ],

@@ -165,7 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(context, MaterialPageRoute(builder: (_)=>AdmainScreen()));
                         },
                         child: Custom_Row1(
-                            text: 'Upload File', icon: Icons.file_upload),
+                            text: 'Upload Plant Picture', icon: Icons.file_upload),
                       ):SizedBox()),
 
                   InkWell(
