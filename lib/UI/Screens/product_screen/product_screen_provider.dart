@@ -431,6 +431,24 @@ class Productlist with ChangeNotifier {
 
     notifyListeners();
   }
+  void delet(int index,String id){
+    switch(index){
+      case 0:
+         FirebaseFirestore.instance.collection('popular').doc(id).delete();
+             break;
+      case 1:
+        FirebaseFirestore.instance.collection('indoor').doc(id).delete();
+        break;
+      case 2:
+        FirebaseFirestore.instance.collection('outdoor').doc(id).delete();
+        break;
+      case 3:
+        FirebaseFirestore.instance.collection('fashion').doc(id).delete();
+        break;
+      default:
+        FirebaseFirestore.instance.collection('default').doc(id).delete();// Replace with your collection name
+    }
+  }
   Stream<QuerySnapshot> count(int index){
     switch(index){
      case 0:

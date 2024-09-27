@@ -235,11 +235,41 @@ class _ProductScreenState extends State<ProductScreen> {
                                           snapsht.data!['role']=='admin'?
                                           Column(
                                             children: [
-                                              Icon(Icons.edit,
-                                                color: Colors.green,
+                                              InkWell(
+                                                onTap:()async{
+                                                  await FirebaseFirestore.instance
+                                                      .collection('popular')  // Replace with your collection name
+                                                      .doc(data.id)
+                                                      .update({
+                                                    'name': 'Updated Name',
+                                                    'email': 30, // Update fields as needed
+                                                  }).then((_) {
+                                                    print("Document successfully updated!");
+                                                  }).catchError((error) {
+                                                    print("Failed to update document: $error");
+                                                  });
+                                                },
+                                                child: Icon(Icons.edit,
+                                                  color: Colors.green,
+                                                ),
                                               ),
-                                              Icon(Icons.delete,
-                                                color: Colors.green,
+                                              InkWell(
+                                                onTap:()async{
+                                                  abc.delet(abc.index, data.id);
+                                            },
+                                                //   await  FirebaseFirestore.instance
+                                                //       .collection('popular')  // Replace with your collection name
+                                                //       .doc(data.id)
+                                                //       .delete()
+                                                //       .then((_) {
+                                                //     print("Document successfully deleted!");
+                                                //   }).catchError((error) {
+                                                //     print("Failed to delete document: $error");
+                                                //   });
+                                                // },
+                                                child: Icon(Icons.delete,
+                                                  color: Colors.green,
+                                                ),
                                               ),
                                             ],
                                           ):
