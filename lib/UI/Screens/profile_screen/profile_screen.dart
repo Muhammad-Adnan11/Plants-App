@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../Components/costum_row1.dart';
+import '../Login_Screen/Login_screen.dart';
 import '../admain_screen/admain_screen.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -168,7 +169,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ):SizedBox()),
 
                   InkWell(
-                      onTap: () {
+                      onTap: ()async{
+                        await FirebaseAuth.instance.signOut().then((_) {
+                          print("User successfully logged out");
+                          // Navigate to the login screen or any other screen after logout
+                         Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginView())); // Change route as needed
+                        }).catchError((error) {
+                          print("Failed to log out: $error");
+                        });
                         //   profileProvider.logout(context);
                       },
                       child: Custom_Row1(text: 'Logout', icon: Icons.logout)),

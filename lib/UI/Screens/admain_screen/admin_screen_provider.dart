@@ -47,6 +47,7 @@ class AdminProvider with ChangeNotifier{
     });
    notifyListeners();
   }
+  
   void selectedcategory(value){
     valuechoose=value;
     notifyListeners();
