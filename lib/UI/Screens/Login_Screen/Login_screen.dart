@@ -12,11 +12,16 @@ import '../buttom_navigation_screen.dart';
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
+
+
   @override
   State<LoginView> createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
+
+
+
   @override
   Widget build(BuildContext context) {
     var heightX = MediaQuery.of(context).size.height;

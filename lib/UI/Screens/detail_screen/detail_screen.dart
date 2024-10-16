@@ -93,7 +93,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   children: [
                     Text('price'),
                     Text(
-                      widget.price,
+                      widget.price.toString(),
                       style: TextStyle(
                         fontSize: width * 0.05,
                         fontWeight: FontWeight.bold,
@@ -115,7 +115,8 @@ class _DetailScreenState extends State<DetailScreen> {
                           .set({
                         'imageUrl': widget.imageUrl,
                         'name': widget.name,
-                        'price': widget.price,
+                        'price': int.tryParse(widget.price.toString())??widget.price,
+                        'quantity':1,
                         'userid': FirebaseAuth.instance.currentUser!.uid,
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -127,7 +128,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                             ),
                           ),
-                          backgroundColor: Colors.green,
+                          backgroundColor: Color(0XFF67802f),
                           duration: Duration(seconds: 3),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15), // Set border radius

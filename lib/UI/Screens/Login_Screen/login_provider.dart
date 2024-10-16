@@ -20,4 +20,11 @@ class LoginProvider with ChangeNotifier {
     // TODO: implement notifyListeners
     super.notifyListeners();
   }
+
+
+  void clearFields(){
+    _emailController.clear();
+    _passwordController.clear();
+    notifyListeners();
+  }
 }

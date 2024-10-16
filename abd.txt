@@ -16,16 +16,16 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  List<int> priceList=[];
+  List<int> quantityList=[];
   int tax=0;
   int deliveryfee=0;
   int totalAmount=0;
-  int subtotal=0;
 
 
   @override
   Widget build(BuildContext context) {
-
-
+    int subtotal=0;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -60,19 +60,19 @@ class _CartScreenState extends State<CartScreen> {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(child: CircularProgressIndicator());
                       }
-                      subtotal=0;
                       return ListView.builder(
                           itemExtent: 100,
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
                             int quantity = snapshot.data!.docs[index]['quantity'];
                             int price = snapshot.data!.docs[index]['price'];
-                            int itemTotal = quantity * price;
-                            subtotal +=itemTotal;
+
+                            priceList.add(price);
+                            quantityList.add(quantity);
 
 
-                            print("Price is $price, Quantity is $quantity, and Item Total is $itemTotal");
-                            print("Subtotal is $subtotal");
+                            subtotal += (quantity*price);
+                            print("Price is $price and quantity is $quantity and subtotal is $subtotal");
 
 
 
@@ -171,8 +171,11 @@ class _CartScreenState extends State<CartScreen> {
                                                     'quantity': counting
                                                   }).then((_) {
                                                     print("Quantity updated");
+                                                  });
 
-                                                   
+                                                  setState(() {
+
+                                            subtotal = subtotal - price;
                                                   });
                                                   },
                                                 child: Container(
@@ -224,7 +227,25 @@ class _CartScreenState extends State<CartScreen> {
                                               )
                                             ],
                                           ),
-
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 27),
+                                            child: Container(
+                                              height: height * 0.04,
+                                              width: width * 0.22,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: Color(0XFF67802f),
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                              ),
+                                              child: Text(
+                                                'Check out',
+                                                style: TextStyle(
+                                                    color: Color(0XFFffffff)),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     )
@@ -235,7 +256,6 @@ class _CartScreenState extends State<CartScreen> {
                           });
                     }),
               ),
-
               Container(
                 height: height * 0.06,
                 decoration: BoxDecoration(
@@ -293,7 +313,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                       TitleAndPrice(
                         title: 'Tax:',
-                        price: '\$ $subtotal',
+                        price: '\$15',
                       ),
                       Divider(
                         color: Colors.grey,
@@ -329,5 +349,4 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
-
 }
