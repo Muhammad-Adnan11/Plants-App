@@ -44,9 +44,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                     admin.gallurayGetImage();
                   },
                   child: CircleAvatar(
-                    backgroundImage: admin.image != null
-                        ? FileImage(File(admin.image!.path))
-                        : null,
+                    backgroundImage: admin.image != null ? FileImage(File(admin.image!.path)) : null,
                     child: admin.image == null ? Text('Image pick') : null,
                     maxRadius: 60,
                   ),
@@ -63,9 +61,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                       style: TextStyle(color: Colors.black),
                     ),
                     hintText: 'Plants management',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.black)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.black)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(color: Colors.black),
@@ -84,9 +80,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                       style: TextStyle(color: Colors.black),
                     ),
                     hintText: 'Plant Description ',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.black)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.black)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(color: Colors.black),
@@ -105,9 +99,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                       style: TextStyle(color: Colors.black),
                     ),
                     hintText: 'Plant price',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.black)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.black)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(color: Colors.black),
@@ -123,18 +115,26 @@ class _AdmainScreenState extends State<AdmainScreen> {
                       admin.addToFireStore('popular');
                     }
                     if (admin.valuechoose == 'Outdoor 2') {
-
                       admin.addToFireStore('outdoor');
                     }
                     if (admin.valuechoose == 'Indoor 3') {
-
                       admin.addToFireStore('indoor');
                     }
                     if (admin.valuechoose == 'Fashion 4') {
-
                       admin.addToFireStore('fashion');
                     }
-
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Center(
+                          child: Text('add a image'),
+                        ),
+                        backgroundColor: Color(0XFF67802f),
+                        duration: Duration(seconds: 3),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15), // Set border radius
+                        ),
+                      ),
+                    );
                     // FirebaseFirestore.instance.collection('Plants').doc().set({
                     //   'plant Name':admin.plantname.text.trim(),
                     //   'Plant Description':admin.plantDescription.text.trim(),
@@ -146,7 +146,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                     height: 50,
                     width: 300,
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Color(0XFF67802f),
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Center(

@@ -10,12 +10,7 @@ class DetailScreen extends StatefulWidget {
   String descrption;
   String price;
 
-  DetailScreen(
-      {super.key,
-      required this.imageUrl,
-      required this.name,
-      required this.descrption,
-      required this.price});
+  DetailScreen({super.key, required this.imageUrl, required this.name, required this.descrption, required this.price});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -78,8 +73,7 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
             Text(
               'Description',
-              style: TextStyle(
-                  fontSize: width * 0.07, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: width * 0.07, fontWeight: FontWeight.bold),
             ),
             Text(widget.descrption),
             SizedBox(
@@ -104,28 +98,25 @@ class _DetailScreenState extends State<DetailScreen> {
                 Container(
                   height: height * 0.06,
                   width: width * 0.5,
-                  decoration: BoxDecoration(
-                      color: Color(0XFF67802f),
-                      borderRadius: BorderRadius.circular(12)),
+                  decoration: BoxDecoration(color: Color(0XFF67802f), borderRadius: BorderRadius.circular(12)),
                   child: InkWell(
                     onTap: () {
-                      FirebaseFirestore.instance
-                          .collection('cart data')
-                          .doc()
-                          .set({
+                      FirebaseFirestore.instance.collection('cart data').doc().set({
                         'imageUrl': widget.imageUrl,
                         'name': widget.name,
-                        'price': int.tryParse(widget.price.toString())??widget.price,
-                        'quantity':1,
+                        'price': int.tryParse(widget.price) ?? 2, // i am changes this line
+                        //'price': int.tryParse(widget.price.toString())??widget.price,
+                        'quantity': 1,
                         'userid': FirebaseAuth.instance.currentUser!.uid,
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Center(
-                            child: Text('Item added in cart',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            child: Text(
+                              'Item added in cart',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           backgroundColor: Color(0XFF67802f),
@@ -181,15 +172,9 @@ class _DetailScreenState extends State<DetailScreen> {
         leading: Container(
           height: 38,
           width: 38,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 10,
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 1)
-              ]),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(5), boxShadow: [
+            BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(0.2), spreadRadius: 1)
+          ]),
           child: Icon(
             Icons.sunny,
             color: Colors.yellow,

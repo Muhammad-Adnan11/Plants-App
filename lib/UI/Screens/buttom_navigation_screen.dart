@@ -13,35 +13,33 @@ class Buttomnavigation extends StatefulWidget {
   @override
   State<Buttomnavigation> createState() => _ButtomnavigationState();
 }
+
 class _ButtomnavigationState extends State<Buttomnavigation> {
-  List<Widget> screens=[
+  List<Widget> screens = [
     const ProductScreen(),
     const CartScreen(),
     const ProfileScreen(),
-
-
   ];
-  int selectscreen=0;
+  int selectscreen = 0;
   @override
   Widget build(BuildContext context) {
-    Productlist bott=Productlist();
+    Productlist bott = Productlist();
     return Scaffold(
       body: screens[selectscreen],
-      bottomNavigationBar:  Container(
+      bottomNavigationBar: Container(
         child: BottomBarInspiredOutside(
           items: bott.items,
           backgroundColor: Colors.white,
-          color: Colors.green,
+          color: Color(0XFF67802f),
           colorSelected: Colors.white,
           indexSelected: selectscreen,
           onTap: (int index) => setState(() {
-            selectscreen= index;
+            selectscreen = index;
           }),
           top: -28,
           animated: false,
           itemStyle: ItemStyle.circle,
-          chipStyle:
-          const ChipStyle(notchSmoothness: NotchSmoothness.smoothEdge, background: Colors.green),
+          chipStyle: const ChipStyle(notchSmoothness: NotchSmoothness.smoothEdge, background: Color(0XFF67802f)),
         ),
       ),
     );

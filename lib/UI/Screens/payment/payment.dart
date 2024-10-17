@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:plants_mart/UI/Components/custom_container.dart';
 
 class Payment extends StatefulWidget {
   const Payment({super.key});
@@ -28,7 +29,7 @@ class _PaymentState extends State<Payment> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
             SizedBox(
@@ -39,7 +40,7 @@ class _PaymentState extends State<Payment> {
                   return Image.asset(
                     imgList[index],
                     fit: BoxFit.cover,
-                    width: MediaQuery.of(context).size.width,
+                    width: widthy * 0.8,
                   );
                 },
                 options: CarouselOptions(
@@ -53,10 +54,57 @@ class _PaymentState extends State<Payment> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 19, right: 150),
+              padding: const EdgeInsets.only(top: 19, right: 170),
               child: Text(
                 'Add new card',
                 style: TextStyle(fontSize: heigthX * 0.04, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Row(
+              children: [
+                CustomIconContainer(imageUrl: 'assets/images/appleicon.png'),
+                SizedBox(
+                  width: widthy * 0.02,
+                ),
+                CustomIconContainer(imageUrl: 'assets/images/googleicon.png'),
+                SizedBox(
+                  width: widthy * 0.02,
+                ),
+                CustomIconContainer(imageUrl: 'assets/images/paypalicon.png'),
+                SizedBox(
+                  width: widthy * 0.02,
+                ),
+                CustomIconContainer(imageUrl: 'assets/images/mastercardicon.png'),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Apple'),
+                SizedBox(
+                  width: widthy * 0.04,
+                ),
+                Text('Google'),
+                SizedBox(
+                  width: widthy * 0.04,
+                ),
+                Text('Pay pal'),
+                SizedBox(
+                  width: widthy * 0.02,
+                ),
+                Text('Master card'),
+                SizedBox(
+                  width: widthy * 0.02,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: heigthX * 0.03,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 230),
+              child: Text(
+                'Card Holder',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: heigthX * 0.03),
               ),
             ),
           ],
