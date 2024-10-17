@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:plants_mart/Core/Colors.dart';
 import 'package:plants_mart/Generated/assets/assets_url.dart';
 import 'package:plants_mart/UI/Screens/admain_screen/admain_screen.dart';
+import 'package:plants_mart/UI/Screens/payment/payment.dart';
 
 import '../../Components/costum_divider_screen.dart';
 
@@ -315,7 +316,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
               MaterialButton(
                 onPressed: () {
-                  //Navigator.push(context, MaterialPageRoute(builder: (_)=>AdmainScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>Payment()));
                 },
                 color: Color(0XFF67802f),
                 child: Text('checkOut'),

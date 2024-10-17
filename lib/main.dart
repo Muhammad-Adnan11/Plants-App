@@ -25,7 +25,7 @@ void main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,
   DeviceOrientation.portraitDown
   ]);
-  runApp(ResponsiveSizer(builder: (BuildContext , Orientation , ScreenType ) {
+  runApp(ResponsiveSizer(builder: (BuildContext , Orientation , ScreenType, ) {
     return  MyApp();
   },
   ));
