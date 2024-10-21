@@ -16,18 +16,26 @@ import 'package:plants_mart/UI/splash_screen.dart';
 import 'package:plants_mart/firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = 'pk_test_51QBA3hE8CiwahsOtEWT2UTFzTpp72HUYzmynDENCr8ZI0gCF5GceiYAGRv8UL0iz173CoScRxWy77ucWoE1eeBhj00PitgVgT4';
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,
-  DeviceOrientation.portraitDown
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
   ]);
-  runApp(ResponsiveSizer(builder: (BuildContext , Orientation , ScreenType, ) {
-    return  MyApp();
-  },
+  runApp(ResponsiveSizer(
+    builder: (
+      BuildContext,
+      Orientation,
+      ScreenType,
+    ) {
+      return MyApp();
+    },
   ));
 }
 

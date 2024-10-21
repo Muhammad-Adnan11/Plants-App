@@ -9,7 +9,6 @@ import 'package:plants_mart/UI/Screens/payment/payment.dart';
 import '../../Components/costum_divider_screen.dart';
 
 class CartScreen extends StatefulWidget {
-
   const CartScreen({super.key});
 
   @override
@@ -17,16 +16,13 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  int tax=0;
-  int deliveryfee=0;
-  int totalAmount=0;
-  int subtotal=0;
-
+  int tax = 0;
+  int deliveryfee = 0;
+  int totalAmount = 0;
+  int subtotal = 0;
 
   @override
   Widget build(BuildContext context) {
-
-
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -48,11 +44,7 @@ class _CartScreenState extends State<CartScreen> {
               Container(
                 height: height * 0.47,
                 child: StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection('cart data')
-                        .where('userid',
-                            isEqualTo: FirebaseAuth.instance.currentUser?.uid)
-                        .snapshots(),
+                    stream: FirebaseFirestore.instance.collection('cart data').where('userid', isEqualTo: FirebaseAuth.instance.currentUser?.uid).snapshots(),
                     builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                       // Check for errors or connection state
                       if (snapshot.hasError) {
@@ -61,7 +53,7 @@ class _CartScreenState extends State<CartScreen> {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(child: CircularProgressIndicator());
                       }
-                      subtotal=0;
+                      subtotal = 0;
                       return ListView.builder(
                           itemExtent: 100,
                           itemCount: snapshot.data!.docs.length,
@@ -69,79 +61,54 @@ class _CartScreenState extends State<CartScreen> {
                             int quantity = snapshot.data!.docs[index]['quantity'];
                             int price = snapshot.data!.docs[index]['price'];
                             int itemTotal = quantity * price;
-                            subtotal +=itemTotal;
-
+                            subtotal += itemTotal;
 
                             print("Price is $price, Quantity is $quantity, and Item Total is $itemTotal");
                             print("Subtotal is $subtotal");
-
-
-
-
-
-
-
-
 
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 5),
                               child: Container(
                                 height: height * 0.1,
                                 width: width * 0.1,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Color(0XFFffffff)),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Color(0XFFffffff)),
                                 child: Row(
                                   children: [
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 8),
+                                      padding: EdgeInsets.symmetric(horizontal: 8),
                                       child: Container(
                                         height: height * 0.12,
                                         width: width * 0.22,
-                                        decoration: BoxDecoration(
-                                            color: Color(0XFFefefef),
-                                            borderRadius:
-                                                BorderRadius.circular(12)),
-                                        child: Image.network(snapshot
-                                            .data!.docs[index]['imageUrl']),
+                                        decoration: BoxDecoration(color: Color(0XFFefefef), borderRadius: BorderRadius.circular(12)),
+                                        child: Image.network(snapshot.data!.docs[index]['imageUrl']),
                                       ),
                                     ),
                                     Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           // 'Bard of paradise',
                                           snapshot.data!.docs[index]['name'],
                                           overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              fontSize: width * 0.03,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: width * 0.03, fontWeight: FontWeight.bold),
                                         ),
                                         Text(
                                           // '59.99',
                                           price.toString(),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
                                           height: height * 0.03,
                                         ),
                                         InkWell(
                                           onTap: () async {
-                                            await FirebaseFirestore.instance
-                                                .collection('cart data')
-                                                .doc(snapshot
-                                                    .data!.docs[index].id)
-                                                .delete();
+                                            await FirebaseFirestore.instance.collection('cart data').doc(snapshot.data!.docs[index].id).delete();
                                           },
                                           child: Container(
                                             width: width * 0.28,
                                             height: height * 0.04,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
+                                              borderRadius: BorderRadius.circular(12),
                                               color: Color(0XFFe7e7e7),
                                             ),
                                             child: Row(
@@ -155,27 +122,20 @@ class _CartScreenState extends State<CartScreen> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 30, top: 8),
+                                      padding: const EdgeInsets.only(left: 30, top: 8),
                                       child: Column(
                                         children: [
                                           Row(
                                             children: [
                                               InkWell(
                                                 onTap: () {
-                                                  int counting = quantity==1?1:quantity - 1;
-                                                  FirebaseFirestore.instance
-                                                      .collection('cart data')
-                                                      .doc(snapshot
-                                                      .data!.docs[index].id)
-                                                      .update({
+                                                  int counting = quantity == 1 ? 1 : quantity - 1;
+                                                  FirebaseFirestore.instance.collection('cart data').doc(snapshot.data!.docs[index].id).update({
                                                     'quantity': counting
                                                   }).then((_) {
                                                     print("Quantity updated");
-
-                                                   
                                                   });
-                                                  },
+                                                },
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: width * 0.05,
@@ -192,9 +152,7 @@ class _CartScreenState extends State<CartScreen> {
                                               ),
                                               Text(
                                                 quantity.toString(),
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                style: TextStyle(fontWeight: FontWeight.bold),
                                               ),
                                               SizedBox(
                                                 width: 5,
@@ -202,11 +160,7 @@ class _CartScreenState extends State<CartScreen> {
                                               InkWell(
                                                 onTap: () {
                                                   int counting = quantity + 1;
-                                                  FirebaseFirestore.instance
-                                                      .collection('cart data')
-                                                      .doc(snapshot
-                                                          .data!.docs[index].id)
-                                                      .update({
+                                                  FirebaseFirestore.instance.collection('cart data').doc(snapshot.data!.docs[index].id).update({
                                                     'quantity': counting
                                                   }).then((_) {
                                                     print("Quantity updated");
@@ -225,7 +179,6 @@ class _CartScreenState extends State<CartScreen> {
                                               )
                                             ],
                                           ),
-
                                         ],
                                       ),
                                     )
@@ -236,7 +189,6 @@ class _CartScreenState extends State<CartScreen> {
                           });
                     }),
               ),
-
               Container(
                 height: height * 0.06,
                 decoration: BoxDecoration(
@@ -278,9 +230,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
               Container(
                 height: height * 0.22,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
@@ -316,7 +266,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
               MaterialButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>Payment()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => Payment()));
                 },
                 color: Color(0XFF67802f),
                 child: Text('checkOut'),
@@ -330,5 +280,4 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
-
 }

@@ -12,16 +12,11 @@ import '../buttom_navigation_screen.dart';
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
-
-
   @override
   State<LoginView> createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
-
-
-
   @override
   Widget build(BuildContext context) {
     var heightX = MediaQuery.of(context).size.height;
@@ -41,8 +36,7 @@ class _LoginViewState extends State<LoginView> {
                 width: widthX * 0.6,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border:
-                      Border.all(color: Colors.green, width: widthX * 0.005),
+                  border: Border.all(color: Colors.green, width: widthX * 0.005),
                   image: DecorationImage(
                     image: AssetImage('assets/images/logo.jpeg'),
                   ),
@@ -53,8 +47,7 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.only(right: 215, top: 30),
                 child: Text(
                   'Login',
-                  style: TextStyle(
-                      fontSize: widthX * 0.1, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: widthX * 0.1, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -65,7 +58,7 @@ class _LoginViewState extends State<LoginView> {
                 lableText: 'Email',
                 hintText: 'Enter your Email',
                 icon: Icons.email,
-               // suffix: Icon(Icons.visibility, color: Colors.black),
+                // suffix: Icon(Icons.visibility, color: Colors.black),
                 controller: LoginProvider1.emailController,
               ),
               CostumTextfield(
@@ -83,11 +76,7 @@ class _LoginViewState extends State<LoginView> {
                     if (validation != null) {
                       print(validation);
                     } else {
-                      FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                              email: LoginProvider1.emailController.text.trim(),
-                              password: LoginProvider1.passwordController.text.trim())
-                          .then(
+                      FirebaseAuth.instance.signInWithEmailAndPassword(email: LoginProvider1.emailController.text.trim(), password: LoginProvider1.passwordController.text.trim()).then(
                         (value) {
                           Navigator.push(
                             context,
