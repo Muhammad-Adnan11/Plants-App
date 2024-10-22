@@ -23,7 +23,7 @@ class _PaymentState extends State<Payment> {
     'assets/images/card4.jpeg',
     'assets/images/card5.jpeg',
   ];
-   Map<String, dynamic>? paymentIntentData;
+  Map<String, dynamic>? paymentIntentData;
   @override
   Widget build(BuildContext context) {
     var heigthX = MediaQuery.of(context).size.height;
@@ -131,7 +131,9 @@ class _PaymentState extends State<Payment> {
               ),
             ),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () async {
+                await makePayment();
+              },
               minWidth: widthy * 0.6,
               //height: heigthX * 0.01,
               color: Color(0XFF67802f),
@@ -150,17 +152,16 @@ class _PaymentState extends State<Payment> {
       ),
     );
   }
-   Future<void> makePayment() async {
+
+  Future<void> makePayment() async {
     try {
-      paymentIntentData =
-          await createPaymentIntent('20', 'USD'); //json.decode(response.body);
+      paymentIntentData = await createPaymentIntent('20', 'USD'); //json.decode(response.body);
       // print('Response body==>${response.body.toString()}');
       await Stripe.instance
           .initPaymentSheet(
               paymentSheetParameters: SetupPaymentSheetParameters(
                   setupIntentClientSecret: 'Your Secret Key',
-                  paymentIntentClientSecret:
-                      paymentIntentData!['client_secret'],
+                  paymentIntentClientSecret: paymentIntentData!['client_secret'],
                   //applePay: PaymentSheetApplePay.,
                   //googlePay: true,
                   //testEnv: true,
@@ -187,14 +188,12 @@ class _PaymentState extends State<Payment> {
               // )
               )
           .then((newValue) {
-        print('payment intent' + paymentIntentData!['id'].toString());
-        print(
-            'payment intent' + paymentIntentData!['client_secret'].toString());
-        print('payment intent' + paymentIntentData!['amount'].toString());
-        print('payment intent' + paymentIntentData.toString());
+        // print('payment intent' + paymentIntentData!['id'].toString());
+        // print('payment intent' + paymentIntentData!['client_secret'].toString());
+        // print('payment intent' + paymentIntentData!['amount'].toString());
+        // print('payment intent' + paymentIntentData.toString());
         //orderPlaceApi(paymentIntentData!['id'].toString());
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text("paid successfully")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("paid successfully")));
 
         paymentIntentData = null;
       }).onError((error, stackTrace) {
@@ -221,17 +220,14 @@ class _PaymentState extends State<Payment> {
         'payment_method_types[]': 'card',
       };
       print(body);
-      var response = await http.post(
-          Uri.parse('https://api.stripe.com/v1/payment_intents'),
-          body: body,
-          headers: {
-            'Authorization': 'Bearer ' + 'your token',
-            'Content-Type': 'application/x-www-form-urlencoded'
-          });
-      print('Create Intent reponse ===> ${response.body.toString()}');
+      var response = await http.post(Uri.parse('https://api.stripe.com/v1/payment_intents'), body: body, headers: {
+        'Authorization': 'Bearer sk_test_51QBA3hE8CiwahsOtDkaMWPFqQKEufuTp4GQLtt8pYHybRsZ60jlCzn0pQmYYHzbrqeStrnc0asQFwd88vt964HiY003oHTG4AS',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      });
+      //print('Create Intent reponse ===> ${response.body.toString()}');
       return jsonDecode(response.body);
     } catch (err) {
-      print('err charging user: ${err.toString()}');
+      //print('err charging user: ${err.toString()}');
     }
   }
 

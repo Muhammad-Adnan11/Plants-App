@@ -11,10 +11,7 @@ class Signupscreen with ChangeNotifier {
   Future<String?> auth() async {
     try {
       // Create user with email and password
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim());
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
 
       User? user = userCredential.user;
 
@@ -24,7 +21,7 @@ class Signupscreen with ChangeNotifier {
           'name': usernameController.text.trim(),
           'email': emailController.text.trim(),
           'userId': user.uid,
-          'role':'user',
+          'role': 'user',
         });
         return 'User registered successfully!';
       }
@@ -34,6 +31,7 @@ class Signupscreen with ChangeNotifier {
     }
     return null;
   }
+
   String? validation() {
     if (emailController.text.isEmpty) {
       return 'Please Enter Your Email';
@@ -42,6 +40,7 @@ class Signupscreen with ChangeNotifier {
     }
     return null;
   }
+
   @override
   void notifyListeners() {
     super.notifyListeners();
