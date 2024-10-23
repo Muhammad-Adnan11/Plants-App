@@ -269,7 +269,10 @@ class _CartScreenState extends State<CartScreen> {
                   Navigator.push(context, MaterialPageRoute(builder: (_) => Payment()));
                 },
                 color: Color(0XFF67802f),
-                child: Text('checkOut'),
+                child: Text(
+                  'checkOut',
+                  style: TextStyle(color: Colors.white),
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),

@@ -104,8 +104,8 @@ class _DetailScreenState extends State<DetailScreen> {
                       FirebaseFirestore.instance.collection('cart data').doc().set({
                         'imageUrl': widget.imageUrl,
                         'name': widget.name,
-                        'price': int.tryParse(widget.price) ?? 2, // i am changes this line
-                        //'price': int.tryParse(widget.price.toString())??widget.price,
+                        //'price': int.tryParse(widget.price) ?? 2, // i am changes this line
+                        'price': int.tryParse(widget.price.toString())??widget.price,
                         'quantity': 1,
                         'userid': FirebaseAuth.instance.currentUser!.uid,
                       });
