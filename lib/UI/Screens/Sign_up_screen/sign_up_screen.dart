@@ -48,14 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 'Create Account',
                 style: TextStyle(fontSize: wigth * 0.1, fontWeight: FontWeight.bold),
               ),
-              CostumTextfield(
-                  lableText: 'Name',
-                  hintText: 'Enter your name',
-                  icons: Icon(
-                    Icons.man_2_sharp,
-                    color: Color(0XFF67802f),
-                  ),
-                  controller: Signup.usernameController),
+              CostumTextfield(lableText: 'Name', hintText: 'Enter your name', icon: Icons.man_2_sharp, controller: Signup.usernameController),
               CostumTextfield(lableText: 'Email', hintText: 'Enter your email', icon: Icons.email, controller: Signup.emailController),
               CostumTextfield(lableText: 'Password', hintText: 'Enter your password', icon: Icons.lock, suffix: Icon(Icons.visibility, color: Color(0XFF67802f)), controller: Signup.passwordController),
               CostumTextfield(lableText: 'Confirm', hintText: 'Confirm password', icon: Icons.lock, suffix: Icon(Icons.visibility, color: Color(0XFF67802f)), controller: Signup.confirmPasswordController),

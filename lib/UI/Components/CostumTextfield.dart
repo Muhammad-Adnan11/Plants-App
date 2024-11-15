@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 class CostumTextfield extends StatelessWidget {
   final Widget? suffix;
-  final Widget? icons;
   final String lableText;
   final String hintText;
   final IconData? icon;
   final TextEditingController controller;
   final bool isPassword;
-  CostumTextfield({required this.lableText, required this.hintText, required this.controller, this.icon, this.isPassword = false, this.suffix,this.icons});
+  CostumTextfield({required this.lableText, required this.hintText, required this.controller, required this.icon, this.isPassword = false, this.suffix});
 
   @override
   Widget build(BuildContext context) {
