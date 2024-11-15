@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
                 width: widthX * 0.6,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.green, width: widthX * 0.005),
+                  border: Border.all(color: Color(0XFF67802f), width: widthX * 0.005),
                   image: DecorationImage(
                     image: AssetImage('assets/images/logo.jpeg'),
                   ),
@@ -57,15 +57,23 @@ class _LoginViewState extends State<LoginView> {
               CostumTextfield(
                 lableText: 'Email',
                 hintText: 'Enter your Email',
-                icon: Icons.email,
+                icons: Icon(
+                  Icons.email,
+                  color: Color(0XFF67802f),
+                ),
+                //icon: Icons.email,
                 // suffix: Icon(Icons.visibility, color: Colors.black),
                 controller: LoginProvider1.emailController,
               ),
               CostumTextfield(
                 lableText: 'Password',
                 hintText: 'Enter your password',
-                icon: Icons.lock,
-                suffix: Icon(Icons.visibility, color: Colors.black),
+                //icon: Icons.lock,
+                icons: Icon(
+                  Icons.lock,
+                  color: Color(0XFF67802f),
+                ),
+                suffix: Icon(Icons.visibility, color: Color(0XFF67802f)),
                 controller: LoginProvider1.passwordController,
               ),
               Padding(
@@ -88,7 +96,7 @@ class _LoginViewState extends State<LoginView> {
                       );
                     }
                   },
-                  color: Colors.green,
+                  color: Color(0XFF67802f),
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -119,7 +127,7 @@ class _LoginViewState extends State<LoginView> {
                       },
                       child: Text(
                         'Sign up',
-                        style: TextStyle(color: Colors.green),
+                        style: TextStyle(color: Color(0XFF67802f)),
                       ),
                     ),
                   ],

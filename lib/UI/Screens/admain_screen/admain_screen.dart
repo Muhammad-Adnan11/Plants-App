@@ -152,7 +152,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
                     child: Center(
                       child: Text(
                         'Upload Image',
-                        style: TextStyle(color: Colors.black, fontSize: 18),
+                        style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
                   ),

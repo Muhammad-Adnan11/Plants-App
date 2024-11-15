@@ -37,8 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: height * 0.14,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border:
-                        Border.all(color: Colors.green, width: wigth * 0.005),
+                    border: Border.all(color: Color(0XFF67802f), width: wigth * 0.005),
                     image: const DecorationImage(
                       image: AssetImage('assets/images/logo.jpeg'),
                     ),
@@ -47,36 +46,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Text(
                 'Create Account',
-                style: TextStyle(
-                    fontSize: wigth * 0.1, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: wigth * 0.1, fontWeight: FontWeight.bold),
               ),
               CostumTextfield(
                   lableText: 'Name',
                   hintText: 'Enter your name',
-                  icon: Icons.man_2_sharp,
-                  controller:Signup.usernameController ),
-              CostumTextfield(
-                  lableText: 'Email',
-                  hintText: 'Enter your email',
-                  icon: Icons.email,
-                  controller: Signup.emailController),
-              CostumTextfield(
-                  lableText: 'Password',
-                  hintText: 'Enter your password',
-                  icon: Icons.lock,
-                  suffix: Icon(Icons.visibility, color: Colors.black),
-                  controller: Signup.passwordController),
-              CostumTextfield(
-                  lableText: 'Confirm',
-                  hintText: 'Confirm password',
-                  icon: Icons.lock,
-                  suffix: Icon(Icons.visibility, color: Colors.black),
-                  controller: Signup.confirmPasswordController),
+                  icons: Icon(
+                    Icons.man_2_sharp,
+                    color: Color(0XFF67802f),
+                  ),
+                  controller: Signup.usernameController),
+              CostumTextfield(lableText: 'Email', hintText: 'Enter your email', icon: Icons.email, controller: Signup.emailController),
+              CostumTextfield(lableText: 'Password', hintText: 'Enter your password', icon: Icons.lock, suffix: Icon(Icons.visibility, color: Color(0XFF67802f)), controller: Signup.passwordController),
+              CostumTextfield(lableText: 'Confirm', hintText: 'Confirm password', icon: Icons.lock, suffix: Icon(Icons.visibility, color: Color(0XFF67802f)), controller: Signup.confirmPasswordController),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 180),
                 child: MaterialButton(
                   textColor: Colors.white,
-                  color: Colors.green,
+                  color: Color(0XFF67802f),
                   onPressed: () {
                     String? validation = Signup.validation();
                     if (validation != null) {
@@ -91,8 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       );
                     }
                   },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -119,7 +105,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       child: Text(
                         'Sign in',
-                        style: TextStyle(color: Colors.green),
+                        style: TextStyle(color: Color(0XFF67802f)),
                       ),
                     ),
                   ],

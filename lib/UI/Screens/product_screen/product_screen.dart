@@ -19,7 +19,7 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
-    User? userId= FirebaseAuth.instance.currentUser;
+    User? userId = FirebaseAuth.instance.currentUser;
     var heigthX = MediaQuery.of(context).size.height;
     var widthy = MediaQuery.of(context).size.width;
     final abc = Provider.of<Productlist>(context);
@@ -50,24 +50,15 @@ class _ProductScreenState extends State<ProductScreen> {
                     children: [
                       Text(
                         'Get',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: widthy * 0.04,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.white, fontSize: widthy * 0.04, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '50% OFF',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: widthy * 0.03,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.white, fontSize: widthy * 0.03, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '1-20 October',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: widthy * 0.03,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.white, fontSize: widthy * 0.03, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -79,8 +70,7 @@ class _ProductScreenState extends State<ProductScreen> {
               padding: const EdgeInsets.only(top: 10, right: 210),
               child: Text(
                 'Categories',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: widthy * 0.06),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: widthy * 0.06),
               ),
             ),
             SizedBox(
@@ -102,10 +92,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Center(
-                              child: Text(abc.plantsList[index]['title'],
-                                  style: index == vm.index
-                                      ? TextStyle(color: Colors.white)
-                                      : null),
+                              child: Text(abc.plantsList[index]['title'], style: index == vm.index ? TextStyle(color: Colors.white) : null),
                             ),
                           ),
                         ),
@@ -121,16 +108,14 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: StreamBuilder(
                       stream: abc.count(abc.index),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
                           return Center(child: CircularProgressIndicator());
                         }
-                        if(snapshot.data !=null && snapshot.data!.docs.isNotEmpty){
+                        if (snapshot.data != null && snapshot.data!.docs.isNotEmpty) {
                           return GridView.builder(
                             itemCount: snapshot.data!.docs.length,
                             // itemCount: abc.plantsList.length,
-                            gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisSpacing: 21,
                               mainAxisSpacing: 21,
                               crossAxisCount: 2,
@@ -148,7 +133,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                         imageUrl: data['image_url'],
                                         name: data['plant Name'],
                                         descrption: data['Plant Description'],
-                                        price: data['Plant Price'],
+                                        price: data['Plant Price'].toString(),
                                       ),
                                     ),
                                   );
@@ -157,8 +142,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   height: heigthX * 0.1,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    border:Border.all(color: Colors.green),
-
+                                    border: Border.all(color: Colors.green),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   // image: DecorationImage(
@@ -168,13 +152,12 @@ class _ProductScreenState extends State<ProductScreen> {
                                   // border: Border.all(color: Colors.green)),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Expanded(
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color:Colors.white,
+                                            color: Colors.white,
                                             image: DecorationImage(
                                               image: NetworkImage(
                                                 data['image_url'],
@@ -214,15 +197,12 @@ class _ProductScreenState extends State<ProductScreen> {
                                           // width: widthy * 0.4,
                                           decoration: BoxDecoration(
                                             color: Color(0XFFE6F7E4),
-                                            borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(10),
-                                                bottomRight: Radius.circular(10)),
+                                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                                           ),
                                           child: StreamBuilder<DocumentSnapshot>(
                                               stream: FirebaseFirestore.instance.collection('user').doc(userId!.uid).snapshots(),
-                                              builder: (context, snapshot){
-                                                if (snapshot.connectionState ==
-                                                    ConnectionState.waiting) {
+                                              builder: (context, snapshot) {
+                                                if (snapshot.connectionState == ConnectionState.waiting) {
                                                   return Center(child: CircularProgressIndicator());
                                                 }
                                                 return ListTile(
@@ -230,72 +210,69 @@ class _ProductScreenState extends State<ProductScreen> {
                                                     data['plant Name'],
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
-                                                  subtitle: Text(
-                                                      data['Plant Price'].toString()),
-                                                  trailing:
-                                                  snapshot.data!['role']=='admin'?
-                                                  Column(
-                                                    children: [
-                                                      InkWell(
-                                                        onTap:()async{
-                                                          await FirebaseFirestore.instance
-                                                              .collection('popular')  // Replace with your collection name
-                                                              .doc(data.id)
-                                                              .update({
-                                                            'name': 'Updated Name',
-                                                            'email': 30, // Update fields as needed
-                                                          }).then((_) {
-                                                            print("Document successfully updated!");
-                                                          }).catchError((error) {
-                                                            print("Failed to update document: $error");
-                                                          });
-                                                        },
-                                                        child: Icon(Icons.edit,
-                                                          color: Colors.green,
+                                                  subtitle: Text(data['Plant Price'].toString()),
+                                                  trailing: snapshot.data!['role'] == 'admin'
+                                                      ? Column(
+                                                          children: [
+                                                            InkWell(
+                                                              onTap: () async {
+                                                                await FirebaseFirestore.instance
+                                                                    .collection('popular') // Replace with your collection name
+                                                                    .doc(data.id)
+                                                                    .update({
+                                                                  'name': 'Updated Name',
+                                                                  'email': 30, // Update fields as needed
+                                                                }).then((_) {
+                                                                  print("Document successfully updated!");
+                                                                }).catchError((error) {
+                                                                  print("Failed to update document: $error");
+                                                                });
+                                                              },
+                                                              child: Icon(
+                                                                Icons.edit,
+                                                                color: Colors.green,
+                                                              ),
+                                                            ),
+                                                            InkWell(
+                                                              onTap: () async {
+                                                                abc.delet(abc.index, data.id);
+                                                              },
+                                                              //   await  FirebaseFirestore.instance
+                                                              //       .collection('popular')  // Replace with your collection name
+                                                              //       .doc(data.id)
+                                                              //       .delete()
+                                                              //       .then((_) {
+                                                              //     print("Document successfully deleted!");
+                                                              //   }).catchError((error) {
+                                                              //     print("Failed to delete document: $error");
+                                                              //   });
+                                                              // },
+                                                              child: Icon(
+                                                                Icons.delete,
+                                                                color: Colors.green,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : Padding(
+                                                          padding: const EdgeInsets.only(bottom: 17),
+                                                          child: Container(
+                                                            height: heigthX * 0.035,
+                                                            width: widthy * 0.07,
+                                                            decoration: BoxDecoration(
+                                                              color: Colors.green,
+                                                              borderRadius: BorderRadius.circular(4),
+                                                            ),
+                                                            child: Center(
+                                                              child: Icon(
+                                                                Icons.add,
+                                                                color: Colors.white,
+                                                              ),
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                      InkWell(
-                                                        onTap:()async{
-                                                          abc.delet(abc.index, data.id);
-                                                        },
-                                                        //   await  FirebaseFirestore.instance
-                                                        //       .collection('popular')  // Replace with your collection name
-                                                        //       .doc(data.id)
-                                                        //       .delete()
-                                                        //       .then((_) {
-                                                        //     print("Document successfully deleted!");
-                                                        //   }).catchError((error) {
-                                                        //     print("Failed to delete document: $error");
-                                                        //   });
-                                                        // },
-                                                        child: Icon(Icons.delete,
-                                                          color: Colors.green,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ):
-                                                  Padding(
-                                                    padding:
-                                                    const EdgeInsets.only(bottom: 17),
-                                                    child: Container(
-                                                      height: heigthX * 0.035,
-                                                      width: widthy * 0.07,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.green,
-                                                        borderRadius:
-                                                        BorderRadius.circular(4),
-                                                      ),
-                                                      child: Center(
-                                                        child: Icon(
-                                                          Icons.add,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
                                                 );
-                                              })
-                                      ),
+                                              })),
                                     ],
                                   ),
                                 ),
@@ -303,9 +280,8 @@ class _ProductScreenState extends State<ProductScreen> {
                             },
                           );
                         }
-                      return CircularProgressIndicator();
-                      })
-              ),
+                        return CircularProgressIndicator();
+                      })),
             )
           ],
         ),
