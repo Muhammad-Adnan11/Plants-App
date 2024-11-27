@@ -62,7 +62,7 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
             Text(
               widget.name,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -85,7 +85,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('price'),
+                    const Text('price'),
                     Text(
                       widget.price.toString(),
                       style: TextStyle(
@@ -98,7 +98,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 Container(
                   height: height * 0.06,
                   width: width * 0.5,
-                  decoration: BoxDecoration(color: Color(0XFF67802f), borderRadius: BorderRadius.circular(12)),
+                  decoration: BoxDecoration(color: const Color(0XFF67802f), borderRadius: BorderRadius.circular(12)),
                   child: InkWell(
                     onTap: () {
                       FirebaseFirestore.instance.collection('cart data').doc().set({
@@ -111,7 +111,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Center(
+                          content: const Center(
                             child: Text(
                               'Item added in cart',
                               style: TextStyle(
@@ -119,8 +119,8 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                             ),
                           ),
-                          backgroundColor: Color(0XFF67802f),
-                          duration: Duration(seconds: 3),
+                          backgroundColor: const Color(0XFF67802f),
+                          duration: const Duration(seconds: 3),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15), // Set border radius
                           ),
@@ -130,7 +130,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.shopping_cart,
                           color: Color(0XFFffffff),
                         ),
@@ -146,7 +146,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         //   },
                         //   child:
 
-                        Text(
+                        const Text(
                           'Add to Cart',
                           style: TextStyle(
                             color: Color(0XFFffffff),
@@ -175,12 +175,12 @@ class _DetailScreenState extends State<DetailScreen> {
           decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(5), boxShadow: [
             BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(0.2), spreadRadius: 1)
           ]),
-          child: Icon(
+          child: const Icon(
             Icons.sunny,
             color: Colors.yellow,
           ),
         ),
-        title: Text(property, style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(property, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(value),
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LoginProvider with ChangeNotifier {
-  TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   TextEditingController get emailController => _emailController;
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   //var passwordCounter;
   TextEditingController get passwordController => _passwordController;
   @override
@@ -16,6 +16,7 @@ class LoginProvider with ChangeNotifier {
     }
     return null;
   }
+  @override
   void notifyListeners() {
     // TODO: implement notifyListeners
     super.notifyListeners();

@@ -16,10 +16,10 @@ class Custom_Row1 extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
-          Text(text,style: TextStyle(
+          Text(text,style: const TextStyle(
             fontSize: 16,
           ),),
         ],

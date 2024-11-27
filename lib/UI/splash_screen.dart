@@ -16,14 +16,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Navigating to the LoginScreen after 3 seconds
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => LoginView()),
+        MaterialPageRoute(builder: (context) => const LoginView()),
       );
     });
   }
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Color(0XFFB1C588),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

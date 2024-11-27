@@ -7,7 +7,7 @@ class CostumTextfield extends StatelessWidget {
   final IconData? icon;
   final TextEditingController controller;
   final bool isPassword;
-  CostumTextfield({required this.lableText, required this.hintText, required this.controller, required this.icon, this.isPassword = false, this.suffix});
+  const CostumTextfield({super.key, required this.lableText, required this.hintText, required this.controller, required this.icon, this.isPassword = false, this.suffix});
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +28,19 @@ class CostumTextfield extends StatelessWidget {
           suffix: suffix,
           hintText: hintText,
           labelText: lableText,
-          labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          labelStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           prefixIcon: icon != null ? Icon(icon) : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Color(0XFF67802f), width: wigthx * 0.005),
+            borderSide: BorderSide(color: const Color(0XFF67802f), width: wigthx * 0.005),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(
-              color: Color(0XFF67802f),
+              color: const Color(0XFF67802f),
               width: wigthx * 0.005,
             ),
           ),

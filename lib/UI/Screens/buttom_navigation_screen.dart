@@ -30,7 +30,7 @@ class _ButtomnavigationState extends State<Buttomnavigation> {
         child: BottomBarInspiredOutside(
           items: bott.items,
           backgroundColor: Colors.white,
-          color: Color(0XFF67802f),
+          color: const Color(0XFF67802f),
           colorSelected: Colors.white,
           indexSelected: selectscreen,
           onTap: (int index) => setState(() {

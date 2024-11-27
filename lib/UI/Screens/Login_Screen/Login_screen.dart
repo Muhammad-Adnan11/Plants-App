@@ -36,8 +36,8 @@ class _LoginViewState extends State<LoginView> {
                 width: widthX * 0.6,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Color(0XFF67802f), width: widthX * 0.005),
-                  image: DecorationImage(
+                  border: Border.all(color: const Color(0XFF67802f), width: widthX * 0.005),
+                  image: const DecorationImage(
                     image: AssetImage('assets/images/logo.jpeg'),
                   ),
                   //borderRadius: BorderRadius.circular(12),
@@ -50,8 +50,8 @@ class _LoginViewState extends State<LoginView> {
                   style: TextStyle(fontSize: widthX * 0.1, fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 130, bottom: 15),
+              const Padding(
+                padding: EdgeInsets.only(right: 130, bottom: 15),
                 child: Text('Please sign into continue'),
               ),
               CostumTextfield(
@@ -65,7 +65,7 @@ class _LoginViewState extends State<LoginView> {
                 lableText: 'Password',
                 hintText: 'Enter your password',
                 icon: Icons.lock,
-                suffix: Icon(Icons.visibility, color: Color(0XFF67802f)),
+                suffix: const Icon(Icons.visibility, color: Color(0XFF67802f)),
                 controller: LoginProvider1.passwordController,
               ),
               Padding(
@@ -81,19 +81,19 @@ class _LoginViewState extends State<LoginView> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => Buttomnavigation(),
+                              builder: (_) => const Buttomnavigation(),
                             ),
                           );
                         },
                       );
                     }
                   },
-                  color: Color(0XFF67802f),
+                  color: const Color(0XFF67802f),
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text('Login'),
@@ -107,17 +107,17 @@ class _LoginViewState extends State<LoginView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Dont have an account? '),
+                    const Text('Dont have an account? '),
                     InkWell(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => SignUpScreen(),
+                            builder: (_) => const SignUpScreen(),
                           ),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign up',
                         style: TextStyle(color: Color(0XFF67802f)),
                       ),

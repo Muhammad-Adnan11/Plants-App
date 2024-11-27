@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Productlist with ChangeNotifier {
   int stateindex = 0;
   List<TabItem> items = [
-    TabItem(
+    const TabItem(
       icon: Icons.home,
       // title: 'Home',
     ),
@@ -13,11 +13,11 @@ class Productlist with ChangeNotifier {
     //   icon: Icons.favorite_border,
     //   title: 'Wishlist',
     // ),
-    TabItem(
+    const TabItem(
       icon: Icons.shopping_cart_outlined,
       title: 'Cart',
     ),
-    TabItem(
+    const TabItem(
       icon: Icons.account_circle,
       title: 'profile',
     ),

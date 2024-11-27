@@ -26,7 +26,7 @@ class _ProductScreenState extends State<ProductScreen> {
     int selectdCat = 1;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Plant Shop'),
+        title: const Text('Plant Shop'),
         // leading: IconButton(
         //   icon: Icon(Icons.arrow_back, color: Colors.black),
         //   onPressed: () {},
@@ -87,12 +87,12 @@ class _ProductScreenState extends State<ProductScreen> {
                           vm.setCat(index);
                         },
                         child: Card(
-                          color: index == vm.index ? Color(0XFFB1C588) : null,
+                          color: index == vm.index ? const Color(0XFF67802f) : null,
                           // margin: EdgeInsets.only(left: 10, top: 10),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Center(
-                              child: Text(abc.plantsList[index]['title'], style: index == vm.index ? TextStyle(color: Colors.white) : null),
+                              child: Text(abc.plantsList[index]['title'], style: index == vm.index ? const TextStyle(color: Colors.white) : null),
                             ),
                           ),
                         ),
@@ -109,13 +109,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       stream: abc.count(abc.index),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
-                          return Center(child: CircularProgressIndicator());
+                          return const Center(child: CircularProgressIndicator());
                         }
                         if (snapshot.data != null && snapshot.data!.docs.isNotEmpty) {
                           return GridView.builder(
                             itemCount: snapshot.data!.docs.length,
                             // itemCount: abc.plantsList.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisSpacing: 21,
                               mainAxisSpacing: 21,
                               crossAxisCount: 2,
@@ -195,7 +195,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                       Container(
                                           height: heigthX * 0.09,
                                           // width: widthy * 0.4,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             color: Color(0XFFE6F7E4),
                                             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                                           ),
@@ -203,7 +203,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                               stream: FirebaseFirestore.instance.collection('user').doc(userId!.uid).snapshots(),
                                               builder: (context, snapshot) {
                                                 if (snapshot.connectionState == ConnectionState.waiting) {
-                                                  return Center(child: CircularProgressIndicator());
+                                                  return const Center(child: CircularProgressIndicator());
                                                 }
                                                 return ListTile(
                                                   title: Text(
@@ -228,7 +228,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                                   print("Failed to update document: $error");
                                                                 });
                                                               },
-                                                              child: Icon(
+                                                              child: const Icon(
                                                                 Icons.edit,
                                                                 color: Colors.green,
                                                               ),
@@ -247,7 +247,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                               //     print("Failed to delete document: $error");
                                                               //   });
                                                               // },
-                                                              child: Icon(
+                                                              child: const Icon(
                                                                 Icons.delete,
                                                                 color: Colors.green,
                                                               ),
@@ -263,7 +263,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                               color: Colors.green,
                                                               borderRadius: BorderRadius.circular(4),
                                                             ),
-                                                            child: Center(
+                                                            child: const Center(
                                                               child: Icon(
                                                                 Icons.add,
                                                                 color: Colors.white,
@@ -280,7 +280,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             },
                           );
                         }
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       })),
             )
           ],

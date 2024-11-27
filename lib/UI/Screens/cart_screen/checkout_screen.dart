@@ -25,20 +25,20 @@ print(widget.priceList.toString());
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          Text("Checkout Now", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          SizedBox(height: 30,),
+          const Text("Checkout Now", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+          const SizedBox(height: 30,),
             Container(
             height: height * 0.06,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Color(0XFFffffff),
+              color: const Color(0XFFffffff),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Promo code',
                     style: TextStyle(color: Colors.grey),
                   ),
@@ -52,9 +52,9 @@ print(widget.priceList.toString());
                     width: width * 0.3,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(19),
-                      color: Color(0XFF67802f),
+                      color: const Color(0XFF67802f),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Apply',
                       style: TextStyle(color: Appcolor.thridecolor),
                     ),
@@ -79,21 +79,21 @@ print(widget.priceList.toString());
                     title: 'SubTotal:',
                     price: 'subtotal.toString()',
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.grey,
                   ),
                   TitleAndPrice(
                     title: 'Tax:',
                     price: '\$15',
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.grey,
                   ),
                   TitleAndPrice(
                     title: 'Delivery Fee:',
                     price: '\$5',
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.grey,
                   ),
                   TitleAndPrice(
@@ -108,11 +108,11 @@ print(widget.priceList.toString());
             onPressed: () {
               //Navigator.push(context, MaterialPageRoute(builder: (_)=>AdmainScreen()));
             },
-            color: Color(0XFF67802f),
-            child: Text('checkOut'),
+            color: const Color(0XFF67802f),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
+            child: Text('checkOut'),
           ),
         ],),
       ),

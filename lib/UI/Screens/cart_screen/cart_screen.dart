@@ -26,10 +26,10 @@ class _CartScreenState extends State<CartScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0XFFe7e7e7),
+      backgroundColor: const Color(0XFFe7e7e7),
       appBar: AppBar(
-        backgroundColor: Color(0XFFe7e7e7),
-        title: Text(
+        backgroundColor: const Color(0XFFe7e7e7),
+        title: const Text(
           'Cart',
         ),
         centerTitle: true,
@@ -40,8 +40,8 @@ class _CartScreenState extends State<CartScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('Order list: 3 items'),
-              Container(
+              const Text('Order list: 3 items'),
+              SizedBox(
                 height: height * 0.47,
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance.collection('cart data').where('userid', isEqualTo: FirebaseAuth.instance.currentUser?.uid).snapshots(),
@@ -51,35 +51,38 @@ class _CartScreenState extends State<CartScreen> {
                         return Center(child: Text("Error: ${snapshot.error}"));
                       }
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                       subtotal = 0;
                       return ListView.builder(
                           itemExtent: 100,
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
-                            int quantity = snapshot.data!.docs[index]['quantity'];
-                            int price = snapshot.data!.docs[index]['price'];
+                            // int quantity = snapshot.data!.docs[index]['quantity'];
+                            // int price = snapshot.data!.docs[index]['price'];
+                            // int itemTotal = quantity * price;
+                            // subtotal += itemTotal;
+                            int quantity = int.tryParse(snapshot.data!.docs[index]['quantity'].toString()) ?? 0; // Convert to int
+                            int price = int.tryParse(snapshot.data!.docs[index]['price'].toString()) ?? 0; // Convert to int
                             int itemTotal = quantity * price;
                             subtotal += itemTotal;
 
                             print("Price is $price, Quantity is $quantity, and Item Total is $itemTotal");
                             print("Subtotal is $subtotal");
-
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 5),
                               child: Container(
                                 height: height * 0.1,
                                 width: width * 0.1,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Color(0XFFffffff)),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: const Color(0XFFffffff)),
                                 child: Row(
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 8),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8),
                                       child: Container(
                                         height: height * 0.12,
                                         width: width * 0.22,
-                                        decoration: BoxDecoration(color: Color(0XFFefefef), borderRadius: BorderRadius.circular(12)),
+                                        decoration: BoxDecoration(color: const Color(0XFFefefef), borderRadius: BorderRadius.circular(12)),
                                         child: Image.network(snapshot.data!.docs[index]['imageUrl']),
                                       ),
                                     ),
@@ -95,7 +98,7 @@ class _CartScreenState extends State<CartScreen> {
                                         Text(
                                           // '59.99',
                                           price.toString(),
-                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                          style: const TextStyle(fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
                                           height: height * 0.03,
@@ -109,9 +112,9 @@ class _CartScreenState extends State<CartScreen> {
                                             height: height * 0.04,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(12),
-                                              color: Color(0XFFe7e7e7),
+                                              color: const Color(0XFFe7e7e7),
                                             ),
-                                            child: Row(
+                                            child: const Row(
                                               children: [
                                                 Icon(Icons.delete),
                                                 Text('Remove')
@@ -139,8 +142,8 @@ class _CartScreenState extends State<CartScreen> {
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: width * 0.05,
-                                                  color: Color(0XFF67802f),
-                                                  child: Icon(
+                                                  color: const Color(0XFF67802f),
+                                                  child: const Icon(
                                                     Icons.remove,
                                                     size: 18,
                                                     color: Color(0XFFefefef),
@@ -152,9 +155,9 @@ class _CartScreenState extends State<CartScreen> {
                                               ),
                                               Text(
                                                 quantity.toString(),
-                                                style: TextStyle(fontWeight: FontWeight.bold),
+                                                style: const TextStyle(fontWeight: FontWeight.bold),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 5,
                                               ),
                                               InkWell(
@@ -169,8 +172,8 @@ class _CartScreenState extends State<CartScreen> {
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: width * 0.05,
-                                                  color: Color(0XFF67802f),
-                                                  child: Icon(
+                                                  color: const Color(0XFF67802f),
+                                                  child: const Icon(
                                                     Icons.add,
                                                     size: 18,
                                                     color: Color(0XFFffffff),
@@ -193,14 +196,14 @@ class _CartScreenState extends State<CartScreen> {
                 height: height * 0.06,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Color(0XFFffffff),
+                  color: const Color(0XFFffffff),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Promo code',
                         style: TextStyle(color: Colors.grey),
                       ),
@@ -214,9 +217,9 @@ class _CartScreenState extends State<CartScreen> {
                         width: width * 0.3,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(19),
-                          color: Color(0XFF67802f),
+                          color: const Color(0XFF67802f),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Apply',
                           style: TextStyle(color: Appcolor.thridecolor),
                         ),
@@ -239,21 +242,21 @@ class _CartScreenState extends State<CartScreen> {
                         title: 'SubTotal:',
                         price: subtotal.toString(),
                       ),
-                      Divider(
+                      const Divider(
                         color: Colors.grey,
                       ),
                       TitleAndPrice(
                         title: 'Tax:',
                         price: '\$ $subtotal',
                       ),
-                      Divider(
+                      const Divider(
                         color: Colors.grey,
                       ),
                       TitleAndPrice(
                         title: 'Delivery Fee:',
                         price: '\$5',
                       ),
-                      Divider(
+                      const Divider(
                         color: Colors.grey,
                       ),
                       TitleAndPrice(
@@ -266,15 +269,15 @@ class _CartScreenState extends State<CartScreen> {
               ),
               MaterialButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => Payment()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const Payment()));
                 },
-                color: Color(0XFF67802f),
+                color: const Color(0XFF67802f),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
                 child: Text(
                   'checkOut',
                   style: TextStyle(color: Colors.white),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
             ],

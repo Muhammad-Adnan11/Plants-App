@@ -51,17 +51,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               return Center(child: Text('Error: ${snapshot.error}')); // * Improved error handling *
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
             if (snapshot.data?.exists == false || snapshot.data == null) {
-              return Center(child: Text('No user data found.'));
+              return const Center(child: Text('No user data found.'));
             }
             // * Check if snapshot and data are not null *
-            if (snapshot != null && snapshot.data != null) {
+            if (snapshot.data != null) {
               // var docID = snapshot.data!.id;
               var userData = snapshot.data?.data() as Map<String, dynamic>?;
               if (userData == null) {
-                return Center(child: Text('User data is unavailable.'));
+                return const Center(child: Text('User data is unavailable.'));
               }
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child:
                             //snapshot.data!['image'] == ''
                             // ?
-                            Icon(
+                            const Icon(
                           Icons.person,
                           size: 130,
                         )
@@ -112,11 +112,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ]),
                   Text(
                     //'kjhg',
-                    userData!['email'],
+                    userData['email'],
                     style: TextStyle(fontSize: 3.5.h, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    userData!['name'],
+                    userData['name'],
                     //'adda',
                     style: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 2.3.h),
                   ),
@@ -144,18 +144,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: snapshot.data!['role'] == 'admin'
                           ? InkWell(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (_) => AdmainScreen()));
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => const AdmainScreen()));
                               },
                               child: Custom_Row1(text: 'Upload Plant Picture', icon: Icons.file_upload),
                             )
-                          : SizedBox()),
+                          : const SizedBox()),
 
                   InkWell(
                       onTap: () async {
                         await FirebaseAuth.instance.signOut().then((_) {
                           print("User successfully logged out");
                           // Navigate to the login screen or any other screen after logout
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView())); // Change route as needed
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginView())); // Change route as needed
                         }).catchError((error) {
                           print("Failed to log out: $error");
                         });
@@ -165,7 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               );
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),

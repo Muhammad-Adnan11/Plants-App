@@ -20,7 +20,7 @@ class _AdmainScreenState extends State<AdmainScreen> {
     final admin = Provider.of<AdminProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Admin'),
+        title: const Text('Admin'),
         centerTitle: true,
       ),
       body: Padding(
@@ -45,68 +45,68 @@ class _AdmainScreenState extends State<AdmainScreen> {
                   },
                   child: CircleAvatar(
                     backgroundImage: admin.image != null ? FileImage(File(admin.image!.path)) : null,
-                    child: admin.image == null ? Text('Image pick') : null,
                     maxRadius: 60,
+                    child: admin.image == null ? Text('Image pick') : null,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
                   controller: admin.plantname,
                   cursorColor: Colors.cyan,
                   decoration: InputDecoration(
-                    label: Text(
+                    label: const Text(
                       'Plant',
                       style: TextStyle(color: Colors.black),
                     ),
                     hintText: 'Plants management',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.black)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.black)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 13,
                 ),
                 TextField(
                   controller: admin.plantDescription,
                   cursorColor: Colors.cyan,
                   decoration: InputDecoration(
-                    label: Text(
+                    label: const Text(
                       'Description',
                       style: TextStyle(color: Colors.black),
                     ),
                     hintText: 'Plant Description ',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.black)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.black)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 13,
                 ),
                 TextField(
                   controller: admin.plantprice,
                   cursorColor: Colors.cyan,
                   decoration: InputDecoration(
-                    label: Text(
+                    label: const Text(
                       'Price',
                       style: TextStyle(color: Colors.black),
                     ),
                     hintText: 'Plant price',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.black)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.black)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 InkWell(
@@ -125,11 +125,11 @@ class _AdmainScreenState extends State<AdmainScreen> {
                     }
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Center(
+                        content: const Center(
                           child: Text('add a image'),
                         ),
-                        backgroundColor: Color(0XFF67802f),
-                        duration: Duration(seconds: 3),
+                        backgroundColor: const Color(0XFF67802f),
+                        duration: const Duration(seconds: 3),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15), // Set border radius
                         ),
@@ -146,10 +146,10 @@ class _AdmainScreenState extends State<AdmainScreen> {
                     height: 50,
                     width: 300,
                     decoration: BoxDecoration(
-                      color: Color(0XFF67802f),
+                      color: const Color(0XFF67802f),
                       borderRadius: BorderRadius.circular(25),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Upload Image',
                         style: TextStyle(color: Colors.white, fontSize: 18),

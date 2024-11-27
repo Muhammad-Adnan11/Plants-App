@@ -35,7 +35,7 @@ void main() async {
       Orientation,
       ScreenType,
     ) {
-      return MyApp();
+      return const MyApp();
     },
   ));
 }
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => Signupscreen()),
         ChangeNotifierProvider(create: (_) => AdminProvider()),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),

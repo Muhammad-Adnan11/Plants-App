@@ -7,11 +7,11 @@ class CustomIconContainer extends StatelessWidget {
 
   // Constructor to accept icon and color
   const CustomIconContainer({
-    Key? key,
+    super.key,
     this.icon,
     this.color,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

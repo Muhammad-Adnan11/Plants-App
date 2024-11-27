@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 class TitleAndPrice extends StatelessWidget {
   final String title;
   final String price;
-  TitleAndPrice({
+  const TitleAndPrice({super.key, 
     required this.title,
     required this.price,
   });

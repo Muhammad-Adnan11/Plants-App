@@ -37,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: height * 0.14,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Color(0XFF67802f), width: wigth * 0.005),
+                    border: Border.all(color: const Color(0XFF67802f), width: wigth * 0.005),
                     image: const DecorationImage(
                       image: AssetImage('assets/images/logo.jpeg'),
                     ),
@@ -50,13 +50,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               CostumTextfield(lableText: 'Name', hintText: 'Enter your name', icon: Icons.man_2_sharp, controller: Signup.usernameController),
               CostumTextfield(lableText: 'Email', hintText: 'Enter your email', icon: Icons.email, controller: Signup.emailController),
-              CostumTextfield(lableText: 'Password', hintText: 'Enter your password', icon: Icons.lock, suffix: Icon(Icons.visibility, color: Color(0XFF67802f)), controller: Signup.passwordController),
-              CostumTextfield(lableText: 'Confirm', hintText: 'Confirm password', icon: Icons.lock, suffix: Icon(Icons.visibility, color: Color(0XFF67802f)), controller: Signup.confirmPasswordController),
+              CostumTextfield(lableText: 'Password', hintText: 'Enter your password', icon: Icons.lock, suffix: const Icon(Icons.visibility, color: Color(0XFF67802f)), controller: Signup.passwordController),
+              CostumTextfield(lableText: 'Confirm', hintText: 'Confirm password', icon: Icons.lock, suffix: const Icon(Icons.visibility, color: Color(0XFF67802f)), controller: Signup.confirmPasswordController),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 180),
                 child: MaterialButton(
                   textColor: Colors.white,
-                  color: Color(0XFF67802f),
+                  color: const Color(0XFF67802f),
                   onPressed: () {
                     String? validation = Signup.validation();
                     if (validation != null) {
@@ -66,7 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => Buttomnavigation(),
+                          builder: (_) => const Buttomnavigation(),
                         ),
                       );
                     }
@@ -92,11 +92,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => LoginView(),
+                            builder: (_) => const LoginView(),
                           ),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign in',
                         style: TextStyle(color: Color(0XFF67802f)),
                       ),

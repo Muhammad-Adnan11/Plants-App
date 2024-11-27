@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 class ProfileProvider with ChangeNotifier {
   User? currentUser;
-  User? _user_id = FirebaseAuth.instance.currentUser;
+  final User? _user_id = FirebaseAuth.instance.currentUser;
   User? get user_id => _user_id;
   ProfileProvider() {
     // Listen to changes in FirebaseAuth state and update the currentUser accordingly
