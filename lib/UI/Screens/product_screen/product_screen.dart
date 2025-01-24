@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:plants_mart/Core/Colors.dart';
 import 'package:plants_mart/UI/Screens/detail_screen/detail_screen.dart';
 import 'package:plants_mart/UI/Screens/product_screen/product_screen_provider.dart';
+import 'package:plants_mart/UI/Screens/search_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -24,13 +25,26 @@ class _ProductScreenState extends State<ProductScreen> {
     var widthy = MediaQuery.of(context).size.width;
     final abc = Provider.of<Productlist>(context);
     int selectdCat = 1;
+    final TextEditingController _searchController = TextEditingController();
+    bool _isSearchBarVisible = false; // Boolean to control the visibility
     return Scaffold(
       appBar: AppBar(
         title: const Text('Plant Shop'),
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back, color: Colors.black),
-        //   onPressed: () {},
-        // ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.search,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchScreen(),
+                ),
+              );
+            },
+          ),
+        ],
         centerTitle: true,
         shadowColor: Colors.amber,
       ),
